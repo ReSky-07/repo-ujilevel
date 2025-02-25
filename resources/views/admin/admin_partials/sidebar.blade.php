@@ -1,31 +1,31 @@
-<div id="layoutSidenav">
+<div id="layoutSidenav" class="d-flex">
     <div id="layoutSidenav_nav">
-        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <nav class="sidenav sb-sidenav mt-5">
             <div class="sb-sidenav-menu">
                 <div class="nav">
-                    <div class="sb-sidenav-menu-heading">Core</div>
+                <div class="line mb-1"></div>       
                     <a class="nav-link {{ Request::is('admin/dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('storage/home.png') }}">
                         Dashboard
                     </a>
                     <a class="nav-link {{ Request::is('admin/presensi') ? 'active' : '' }}" href="{{ route('admin.presensi.index') }}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('storage/absensi.png') }}">
                         Presensi
                     </a>
                     <a class="nav-link {{ Request::is('admin/daftar_karyawan') ? 'active' : '' }}" href="{{ route('admin.daftar_karyawan.index') }}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('storage/karyawan.png') }}">
                         Daftar Karyawan
                     </a>
                     <a class="nav-link {{ Request::is('admin/barang') ? 'active' : '' }}" href="{{ route('admin.barang.index') }}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('storage/kelolabarang.png') }}">
                         Kelola Barang
                     </a>
                     <a class="nav-link {{ Request::is('admin/kategori') ? 'active' : '' }}" href="{{ route('admin.kategori.index') }}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('storage/kategori.png') }}">
                         Kelola Kategori
                     </a>
                     <a class="nav-link {{ Request::is('admin/transaksi') ? 'active' : '' }}" href="{{ route('admin.transaksi.index') }}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('storage/transaksi.png') }}">
                         Kelola Transaksi
                     </a>
             <div class="sb-sidenav-footer">

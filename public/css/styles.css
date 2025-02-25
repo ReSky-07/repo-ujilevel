@@ -10900,14 +10900,23 @@ body {
 @media (min-width: 992px) {
   #layoutSidenav #layoutSidenav_nav {
     transform: translateX(0);
-  }
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+}
   #layoutSidenav #layoutSidenav_content {
     margin-left: 0;
     transition: margin 0.15s ease-in-out;
+    width: 100%;
   }
   .sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
     transform: translateX(-225px);
-  }
+    -webkit-transform: translateX(-225px);
+    -moz-transform: translateX(-225px);
+    -ms-transform: translateX(-225px);
+    -o-transform: translateX(-225px);
+}
   .sb-sidenav-toggled #layoutSidenav #layoutSidenav_content {
     margin-left: -225px;
   }
@@ -10974,6 +10983,7 @@ body {
 
 .sb-sidenav {
   display: flex;
+  width: 200;
   flex-direction: column;
   height: 100%;
   flex-wrap: nowrap;
