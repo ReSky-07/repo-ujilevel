@@ -1,32 +1,31 @@
-<div id="layoutSidenav">
+<div id="layoutSidenav" class="d-flex">
     <div id="layoutSidenav_nav">
-        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <nav class="sidenav sb-sidenav mt-5">
             <div class="sb-sidenav-menu">
                 <div class="nav">
-                    <div class="sb-sidenav-menu-heading">Core</div>
-                    <a class="nav-link {{ Request::is('/dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                <div class="line mb-1"></div>  
+                <a class="nav-link {{ Request::is('/dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
+                    <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('storage/home.png') }}">
                         Dashboard
                     </a>
                     <a class="nav-link {{ Request::is('/presensi') ? 'active' : '' }}" href="{{ route('presensi.index') }}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('storage/absensi.png') }}">
                         Presensi
                     </a>
                     <a class="nav-link {{ Request::is('/barang') ? 'active' : '' }}" href="{{ route('barang.index') }}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('storage/kelolabarang.png') }}">
                         Kelola Barang
                     </a>
                     <a class="nav-link {{ Request::is('/kategori') ? 'active' : '' }}" href="{{ route('kategori.index') }}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('storage/kategori.png') }}">
                         Kelola Kategori
                     </a>
                     <a class="nav-link {{ Request::is('/transaksi') ? 'active' : '' }}" href="{{ route('transaksi.index') }}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('storage/transaksi.png') }}">
                         Kelola Transaksi
                     </a>
                 </div>
-            </div>
-            <div class="sb-sidenav-footer">
+                <div class="sb-sidenav-footer">
                 <div class="small">Logged in as:</div>
                 {{ Auth::user()->name ?? 'Guest' }}
             </div>

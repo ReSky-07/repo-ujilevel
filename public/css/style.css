@@ -1,0 +1,228 @@
+/* Import Font */
+@import url('https://fonts.googleapis.com/css2?family=Afacad:wght@400;700&display=swap');
+
+.font-afacad {
+    font-family: 'Afacad', sans-serif !important;
+}
+
+/* Sidebar */
+#layoutSidenav {
+    display: flex;
+    min-height: 100vh;
+}
+
+#layoutSidenav_nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 250px;
+    transition: width 0.3s ease-in-out;
+    position: fixed;
+    height: 50vh; /* Pastikan tinggi sesuai layar */
+    background-color: #f8f9fa;
+    z-index: 1000;
+    overflow-x: hidden; /* Mencegah scroll horizontal */
+    padding-bottom: 50px; /* Hindari scroll karena footer */
+}
+
+#layoutSidenav_nav.collapsed {
+    width: 0 !important;
+    visibility: hidden;
+    overflow: hidden;
+}
+
+/* Konten utama */
+#layoutSidenav_content {
+    transition: margin-left 0.3s ease-in-out;
+    margin-left: 250px; /* Default, menyesuaikan sidebar */
+    height: 80vh;
+}
+
+#layoutSidenav_nav.collapsed + #layoutSidenav_content {
+    margin-left: 0;
+}
+
+.button-sidebar{
+    color: white !important;
+    margin-left: 100px;
+}
+
+/* Navbar */
+.navbar {
+    height: 9vh !important;
+    background: linear-gradient(to bottom, #D90F00, #d60e00);
+}
+
+.nav-link.active {
+    color: #fff;
+    opacity: 100%;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.dropdown-toggle {
+    margin: 10px;
+    color: white !important;
+    text-decoration: none;
+}
+
+/* Sidenav */
+.sidenav {
+    background: linear-gradient(to bottom, #D90F00, #c40d00, #730800);
+    width: 250px;
+    height: 100vh;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    overflow-y: auto; /* Scroll hanya jika butuh */
+    overflow-x: hidden; /* Mencegah scroll horizontal */
+}
+
+.sb-sidenav{
+    width: 100% !important;
+}
+
+.sb-sidenav-menu{
+    height: 200px;
+    color: white;
+    text-decoration: none;
+}
+
+.sb-sidenav-footer {
+    margin-top: auto;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #730800;
+    color: white;
+    padding: 10px;
+}
+
+.sidenav .nav-link {
+    color: #e6e6e6; /* Warna abu-abu sebelum diklik */
+}
+
+.sidenav .nav-link:hover {
+    color: #ffffff; /* Warna putih saat hover */
+}
+
+.sidenav .nav-link.active {
+    color: #ffffff !important; /* Warna putih setelah diklik */
+    font-weight: bold;
+}
+
+
+.nav-link {
+    color: white;
+    opacity: 80%;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    transition: ease-in 0.3s;
+    color: white;
+    opacity: 150%;
+}
+
+
+
+/* Garis separator */
+.line {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 90%;
+    margin: auto;
+    border: none;
+    height: 1px;
+    background: #aaaaaa !important;
+}
+
+/* Tombol */
+.btn-sm {
+    width: 100px;
+}
+
+.btn-primary {
+    margin-right: 75px;
+}
+
+/* Tabel */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+/* Responsif */
+@media (max-width: 1024px) {
+    .navbar {
+        height: auto;
+        padding: 10px;
+    }
+
+    .sidenav {
+        width: 200px;
+    }
+
+    .btn-primary {
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    #layoutSidenav_nav {
+        width: 0;
+        visibility: hidden;
+    }
+
+    #layoutSidenav_content {
+        margin-left: 0;
+    }
+
+    .navbar {
+        height: auto;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .btn-sm {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    table {
+        font-size: 0.9rem;
+    }
+
+    .btn-primary {
+        font-size: 0.8rem;
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    th, td {
+        font-size: 0.8rem;
+    }
+
+    footer {
+        font-size: 0.7rem;
+    }
+}

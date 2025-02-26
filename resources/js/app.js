@@ -1,7 +1,6 @@
 import './bootstrap';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './landingpage'; // Sesuaikan dengan file utama React kamu
 
-import Alpine from 'alpinejs';
-
-window.Alpine = Alpine;
-
-Alpine.start();
+ReactDOM.createRoot(document.getElementById('app')).render(<App />);

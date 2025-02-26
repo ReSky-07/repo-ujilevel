@@ -1,16 +1,17 @@
-<body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<body class="sb-nav-fixed font-afacad">
+    <nav class="sb-topnav navbar navbar-expand">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+        <img style="width: 80px;" class="navbar-brand ps-3" src="{{ asset('storage/logo-bispin.png') }}" alt="Logo Bispin">
         <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
+        <button class="button-sidebar btn"  id="sidebarToggle" href="#!">
             <i class="fas fa-bars"></i>
         </button>
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto">
             <li class="nav-item dropdown">
                 <!-- Display User's Name -->
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
                     {{ Auth::user()->name }}
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

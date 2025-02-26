@@ -72,6 +72,5 @@
             });
         });
     </script>
-</div>
 @include('admin.admin_partials.footer')
 
