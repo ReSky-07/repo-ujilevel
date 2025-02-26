@@ -14,6 +14,45 @@
     -o-transition: color 0.3s ease;
 }
 
+.navlinks .nav-link {
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    color: white !important;
+    font-weight: 500;
+    -webkit-transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    -moz-transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    -ms-transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    -o-transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.navlinks .nav-link:hover {
+    color: white !important;
+}
+
+
+.auth-buttons {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+    }
+
+.auth-link {
+    font-size: 25px !important;
+    color: white !important;
+    text-decoration: none;
+}
+
+.login {
+    margin-right: -15px;
+}
+
+.register {
+    margin-right: -100px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    /* Warna merah Laravel */
+}
+
+
 .navbar {
     display: flex;
     align-items: center;
@@ -290,14 +329,19 @@
     text-align: center;
     padding: 0;
     margin: 0;
-    position: relative; /* Penting untuk efek overlay */
-    overflow: hidden; /* Sembunyikan elemen yang keluar dari batas kartu */
+    position: relative;
+    /* Penting untuk efek overlay */
+    overflow: hidden;
+    /* Sembunyikan elemen yang keluar dari batas kartu */
 }
 
 .lokasi1, .lokasi2, .lokasi3 {
-    width: 100%; /* Pastikan gambar mengisi penuh kolom */
-    height: 100%; /* Pastikan gambar memenuhi baris */
-    object-fit: cover; /* Sesuaikan gambar agar memenuhi ruang */
+    width: 100%;
+    /* Pastikan gambar mengisi penuh kolom */
+    height: 100%;
+    /* Pastikan gambar memenuhi baris */
+    object-fit: cover;
+    /* Sesuaikan gambar agar memenuhi ruang */
 }
 
 .cardlocation {
@@ -305,7 +349,8 @@
     justify-content: space-between;
     align-items: center;
     margin: 0;
-    gap: 0; /* Sesuaikan jarak antar kartu jika diperlukan */
+    gap: 0;
+    /* Sesuaikan jarak antar kartu jika diperlukan */
 }
 
 /* Overlay untuk menampilkan teks saat hover */
@@ -343,6 +388,7 @@
     transition: opacity 0.5s ease-in-out;
     margin-left: 4px;
 }
+
 .card3loc .overlay {
     position: absolute;
     top: 0;
@@ -377,7 +423,8 @@
 .card1loc:hover .overlay,
 .card2loc:hover .overlay,
 .card3loc:hover .overlay {
-    opacity: 1; /* Tampilkan overlay */
+    opacity: 1;
+    /* Tampilkan overlay */
 }
 
 
@@ -421,12 +468,16 @@
 }
 
 .contact-content {
-    display: flex; /* Flex untuk tata letak */
-    flex-direction: column; /* Elemen dalam kolom (vertikal) */
-    justify-content: center; /* Tengah secara vertikal */
-    align-items: center; /* Tengah secara horizontal */
+    display: flex;
+    /* Flex untuk tata letak */
+    flex-direction: column;
+    /* Elemen dalam kolom (vertikal) */
+    justify-content: center;
+    /* Tengah secara vertikal */
+    align-items: center;
+    /* Tengah secara horizontal */
     text-align: center;
-    background-image: linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.411),  rgb(0, 0, 0)), url(../assets/ayam3.png);
+    background-image: linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.411), rgb(0, 0, 0)), url(../assets/ayam3.png);
     background-position: center;
     background-size: cover;
     width: 150vh;
@@ -440,21 +491,25 @@
     align-items: center;
     font-size: 70px;
     letter-spacing: 6px;
-    height: auto; /* Sesuaikan tinggi otomatis */
-    margin-bottom: 20px; /* Tambahkan jarak bawah */
+    height: auto;
+    /* Sesuaikan tinggi otomatis */
+    margin-bottom: 20px;
+    /* Tambahkan jarak bawah */
     margin-left: 8vh;
 }
 
 .contact-form {
     display: flex;
-    flex-direction: column; /* Susunan vertikal */
+    flex-direction: column;
+    /* Susunan vertikal */
     align-items: center;
     text-align: center;
     width: 50%;
-    gap: 15px; /* Jarak antar elemen input */
+    gap: 15px;
+    /* Jarak antar elemen input */
 }
 
-.form-control{
+.form-control {
     background-color: #d9d9d9;
     text-align: center;
     font-size: 25px;
@@ -463,16 +518,16 @@
     letter-spacing: 2px;
 }
 
-.form-control::placeholder{
+.form-control::placeholder {
     color: #7e7e7e;
 }
 
-.div-button-contact{
+.div-button-contact {
     padding-top: 40px;
 }
 
-.button-contact{
-    background-color: #FF3434;
+.button-contact {
+    background-color: #404040;
     width: 18vh;
     height: 10vh;
     border: none;
@@ -483,26 +538,44 @@
     -o-border-radius: 10px;
 }
 
-.fading-line{
+.button-contact:hover{
+    background-color: #FF3434;
+    transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+}
+
+.button-contact:not(:hover){
+    background-color: #404040;
+    transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+}
+
+.fading-line {
     width: 100%;
     height: 1.57px;
     background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
 }
 
-.card-contact{
+.card-contact {
     display: flex;
     justify-content: center;
     gap: 100px;
     margin-top: 100px;
 }
 
-.card-content-contact{
+.card-content-contact {
     font-family: afacad, sans-serif;
     justify-content: center;
     align-items: center;
     text-align: center;
     background-color: white;
-    height: 27vh;
+    height: 30vh;
     width: 40vh;
     border-radius: 12px;
     border-bottom: #FF3434 solid 5px;
@@ -512,41 +585,41 @@
     -o-border-radius: 12px;
 }
 
-.location-logo{
+.location-logo {
     height: 45px;
 }
 
-.email-logo{
+.email-logo {
     height: 38px;
 }
 
-.whatsapp-logo{
+.whatsapp-logo {
     height: 42px;
 }
 
-.card-title{
+.card-title {
     font-size: 28px;
     letter-spacing: 2px;
 }
 
-.card-subtitle{
+.card-subtitle {
     font-size: 14px;
     letter-spacing: 2px;
 }
 
-.red-line{
+.red-line {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.redline{
+.redline {
     background-color: #FF3434;
     width: 100px;
     height: 5px;
 }
 
-.copyright{
+.copyright {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -563,7 +636,7 @@
         align-items: flex-start;
         padding: 10px;
     }
-    
+
     .navlinks {
         flex-direction: column;
         align-items: center;
@@ -590,12 +663,18 @@
 
     .card {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); /* 2 kolom */
-        grid-template-rows: repeat(2, 1fr); /* 2 baris */
-        gap: 0; /* Hilangkan jarak antar elemen */
-        padding: 0; /* Hilangkan padding di container */
-        width: 100%; /* Pastikan container memenuhi layar */
-        height: 100vh; /* Sesuaikan tinggi container */
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 kolom */
+        grid-template-rows: repeat(2, 1fr);
+        /* 2 baris */
+        gap: 0;
+        /* Hilangkan jarak antar elemen */
+        padding: 0;
+        /* Hilangkan padding di container */
+        width: 100%;
+        /* Pastikan container memenuhi layar */
+        height: 100vh;
+        /* Sesuaikan tinggi container */
     }
 
     .card1, .card3 {
@@ -603,7 +682,8 @@
         justify-content: center;
         align-items: center;
         text-align: center;
-        overflow: hidden; /* Agar gambar tidak melebihi area */
+        overflow: hidden;
+        /* Agar gambar tidak melebihi area */
     }
 
     .card2, .card4 {
@@ -613,13 +693,17 @@
         justify-content: center;
         align-items: center;
         text-align: center;
-        overflow: hidden; /* Agar gambar tidak melebihi area */
+        overflow: hidden;
+        /* Agar gambar tidak melebihi area */
     }
 
     .ayam1, .ayam2 {
-        width: 100%; /* Pastikan gambar mengisi penuh kolom */
-        height: 100%; /* Pastikan gambar memenuhi baris */
-        object-fit: cover; /* Gambar tidak terdistorsi */
+        width: 100%;
+        /* Pastikan gambar mengisi penuh kolom */
+        height: 100%;
+        /* Pastikan gambar memenuhi baris */
+        object-fit: cover;
+        /* Gambar tidak terdistorsi */
     }
 
     .card-content {
@@ -646,11 +730,11 @@
         justify-content: space-between;
         height: auto;
     }
-    
+
     .location-content {
         width: 98%;
     }
-    
+
     .title-location {
         display: flex;
         justify-content: center;
@@ -662,27 +746,34 @@
         letter-spacing: 4px;
         color: #404040;
     }
-    
+
     .cardlocation {
         display: grid;
-        grid-template-columns: repeat(3, 1fr); /* 3 kolom */
-        grid-template-rows: 1fr; /* 1 baris */
-        gap: 0; /* Hilangkan jarak antar elemen */
-        padding: 0; /* Hilangkan padding di container */
-        width: 100%; /* Pastikan container memenuhi layar */
-        height: auto; /* Biarkan tinggi otomatis agar proporsional */
+        grid-template-columns: repeat(3, 1fr);
+        /* 3 kolom */
+        grid-template-rows: 1fr;
+        /* 1 baris */
+        gap: 0;
+        /* Hilangkan jarak antar elemen */
+        padding: 0;
+        /* Hilangkan padding di container */
+        width: 100%;
+        /* Pastikan container memenuhi layar */
+        height: auto;
+        /* Biarkan tinggi otomatis agar proporsional */
     }
-    
+
     .card1loc {
         display: flex;
         justify-content: center;
         align-items: center;
         text-align: center;
-        padding: 0; /* Hilangkan padding pada card */
+        padding: 0;
+        /* Hilangkan padding pada card */
         border-left: 1px solid black;
         box-sizing: border-box;
     }
-    
+
     .card2loc {
         display: flex;
         justify-content: center;
@@ -690,25 +781,30 @@
         text-align: center;
         padding: 0;
     }
-    
+
     .card3loc {
         display: flex;
         justify-content: center;
         align-items: center;
         text-align: center;
-        padding: 0; /* Hilangkan padding pada card */
+        padding: 0;
+        /* Hilangkan padding pada card */
         border-right: 1px solid black;
         box-sizing: border-box;
     }
-    
+
     .lokasi1, .lokasi2, .lokasi3 {
-        width: 100%; /* Pastikan gambar mengisi penuh kolom */
-        height: 102%; /* Pastikan gambar memenuhi baris */
-        object-fit: cover; /* Sesuaikan gambar agar memenuhi ruang */
+        width: 100%;
+        /* Pastikan gambar mengisi penuh kolom */
+        height: 102%;
+        /* Pastikan gambar memenuhi baris */
+        object-fit: cover;
+        /* Sesuaikan gambar agar memenuhi ruang */
     }
-    
+
     .cardlocation, .card1loc, .card2loc, .card3loc {
-        margin: 0; /* Hilangkan margin pada semua elemen */
+        margin: 0;
+        /* Hilangkan margin pada semua elemen */
     }
 
     .footer-decoration {
@@ -718,39 +814,46 @@
         width: 10px;
         padding-bottom: 40px;
     }
-    
+
     .footer-line-with-stars {
         display: flex;
         justify-content: center;
         align-items: center;
         margin-top: 18px;
-        gap: 30px; /* Jarak antara garis dan bintang */
+        gap: 30px;
+        /* Jarak antara garis dan bintang */
     }
-    
+
     .footer-line {
         display: block;
         width: 18vh;
         height: 3px;
         background-color: #4d4d4d;
     }
-    
+
     .footer-stars {
-        font-size: 1rem; /* Sesuaikan ukuran bintang */
+        font-size: 1rem;
+        /* Sesuaikan ukuran bintang */
     }
 
     .contact {
         display: flex;
         justify-content: center;
         background-color: black;
-        height: 230vh; /* Sesuaikan tinggi otomatis agar sesuai dengan konten */
+        height: 230vh;
+        /* Sesuaikan tinggi otomatis agar sesuai dengan konten */
         font-family: afacad, sans-serif;
     }
-    
+
     .contact-content {
-        display: flex; /* Flex untuk tata letak */
-        flex-direction: column; /* Elemen dalam kolom (vertikal) */
-        justify-content: center; /* Tengah secara vertikal */
-        align-items: center; /* Tengah secara horizontal */
+        display: flex;
+        /* Flex untuk tata letak */
+        flex-direction: column;
+        /* Elemen dalam kolom (vertikal) */
+        justify-content: center;
+        /* Tengah secara vertikal */
+        align-items: center;
+        /* Tengah secara horizontal */
         text-align: center;
         background-image: linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.411), rgb(0, 0, 0)), url(../assets/ayam3.png);
         background-position: center;
@@ -758,46 +861,51 @@
         width: 100%;
         color: white;
     }
-    
+
     .contact-text {
         font-size: 60px;
         letter-spacing: 6px;
-        margin-bottom: 20px; /* Tambahkan jarak bawah */
-    }
-    
-    .contact-form {
-        display: flex;
-        flex-direction: column; /* Susunan vertikal */
-        align-items: center;
-        text-align: center;
-        width: 100%; /* Pastikan form memenuhi lebar container */
-        gap: 15px; /* Jarak antar elemen input */
+        margin-bottom: 20px;
+        /* Tambahkan jarak bawah */
     }
 
-    .form-responsive{
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        /* Susunan vertikal */
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        /* Pastikan form memenuhi lebar container */
+        gap: 15px;
+        /* Jarak antar elemen input */
+    }
+
+    .form-responsive {
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    
+
     .form-control {
         background-color: #d9d9d9;
         text-align: center;
         width: 80%;
-        max-width: 500px; /* Batasi lebar maksimum */
+        max-width: 500px;
+        /* Batasi lebar maksimum */
         height: 8vh;
         letter-spacing: 2px;
     }
-    
+
     .form-control::placeholder {
         font-size: 18px;
         color: #7e7e7e;
     }
-    
+
     .div-button-contact {
         padding-top: 40px;
     }
-    
+
     .button-contact {
         background-color: #FF3434;
         width: 14vh;
@@ -811,12 +919,12 @@
         justify-content: center;
         align-items: center;
     }
-    
-    .img-button-contact{
+
+    .img-button-contact {
         width: 7vh;
     }
 
-    .fading-line{
+    .fading-line {
         width: 100%;
         height: 2px;
         background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
@@ -827,48 +935,56 @@
         display: flex;
         align-items: center;
         height: 140vh;
-        flex-direction: column; /* Tumpuk kartu ke bawah */
-        gap: 50px; /* Kurangi jarak antar kartu */
+        flex-direction: column;
+        /* Tumpuk kartu ke bawah */
+        gap: 50px;
+        /* Kurangi jarak antar kartu */
     }
 
     .card-content-contact {
-        height: 35vh; /* Biarkan tinggi menyesuaikan konten */
-        width: 80%; /* Gunakan hampir seluruh lebar layar */
+        height: 35vh;
+        /* Biarkan tinggi menyesuaikan konten */
+        width: 80%;
+        /* Gunakan hampir seluruh lebar layar */
     }
 
-    .location-logo{
+    .location-logo {
         height: 40px;
     }
-    
-    .email-logo{
+
+    .email-logo {
         height: 30px;
         margin-top: 25px;
     }
-    
-    .whatsapp-logo{
+
+    .whatsapp-logo {
         height: 40px;
         margin-top: 30px;
     }
 
     .card-title {
-        font-size: 28px; /* Kurangi ukuran font lebih kecil */
+        font-size: 28px;
+        /* Kurangi ukuran font lebih kecil */
     }
 
     .card-subtitle {
         letter-spacing: 0;
-        font-size: 20px; /* Kurangi ukuran font lebih kecil */
+        font-size: 20px;
+        /* Kurangi ukuran font lebih kecil */
     }
 
     .redline {
-        width: 85px; /* Kurangi lebar garis */
+        width: 85px;
+        /* Kurangi lebar garis */
         height: 4px;
     }
 
     .copyright {
         height: 100px;
-        font-size: 16px; /* Kurangi ukuran font untuk layar kecil */
+        font-size: 16px;
+        /* Kurangi ukuran font untuk layar kecil */
     }
-    
+
 }
 
 

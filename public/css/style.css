@@ -36,7 +36,6 @@
     transition: margin-left 0.3s ease-in-out;
     margin-left: 250px; /* Default, menyesuaikan sidebar */
     height: 80vh;
-    margin-top: 20px;
 }
 
 #layoutSidenav_nav.collapsed + #layoutSidenav_content {
@@ -50,7 +49,7 @@
 
 /* Navbar */
 .navbar {
-    height: 12vh !important;
+    height: 9vh !important;
     background: linear-gradient(to bottom, #D90F00, #d60e00);
 }
 

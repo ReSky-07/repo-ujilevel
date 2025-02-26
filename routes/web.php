@@ -14,6 +14,17 @@ use App\Http\Controllers\Admin\AdminDaftarKaryawanController;
 use App\Http\Controllers\User\UserDashboardController;
 use App\Http\Controllers\User\UserPresensiController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+
+Route::get('/api/auth-status', function (Request $request) {
+    return response()->json([
+        'isAuthenticated' => Auth::check(),
+        'user' => Auth::user(),
+        'loginUrl' => route('login'),
+        'registerUrl' => Route::has('register') ? route('register') : null,
+        'dashboardUrl' => url('/dashboard'),
+    ]);
+});
 
 Route::get('/', function () {
     return view('welcome');
