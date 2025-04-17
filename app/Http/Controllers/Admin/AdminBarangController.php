@@ -25,6 +25,17 @@ class AdminBarangController extends Controller
             'tanggal_input' => 'required|date',
             'nama_barang' => 'required|string',
             'stok' => 'required|integer',
+        ], [
+            'tanggal_input.required' => 'Tanggal input wajib diisi.',
+            'tanggal_input.date' => 'Format tanggal tidak valid.',
+
+            'nama_barang.required' => 'Nama barang tidak boleh kosong.',
+            'nama_barang.string' => 'Nama barang harus berupa teks.',
+            'nama_barang.max' => 'Nama barang terlalu panjang, maksimal 255 karakter.',
+
+            'stok.required' => 'Stok wajib diisi.',
+            'stok.integer' => 'Stok harus berupa angka.',
+            'stok.min' => 'Stok tidak boleh kurang dari 0.',
         ]);
 
         Barang::create($request->all());
@@ -44,6 +55,17 @@ class AdminBarangController extends Controller
             'tanggal_input' => 'required|date',
             'nama_barang' => 'required|string',
             'stok' => 'required|integer',
+        ], [
+            'tanggal_input.required' => 'Tanggal input wajib diisi.',
+            'tanggal_input.date' => 'Format tanggal tidak valid.',
+
+            'nama_barang.required' => 'Nama barang tidak boleh kosong.',
+            'nama_barang.string' => 'Nama barang harus berupa teks.',
+            'nama_barang.max' => 'Nama barang terlalu panjang, maksimal 255 karakter.',
+
+            'stok.required' => 'Stok wajib diisi.',
+            'stok.integer' => 'Stok harus berupa angka.',
+            'stok.min' => 'Stok tidak boleh kurang dari 0.',
         ]);
 
         $barang = Barang::findOrFail($id);

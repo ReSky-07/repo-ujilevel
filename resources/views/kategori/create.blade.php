@@ -15,12 +15,18 @@
                 <div class="card-body">
                     <form action="{{ route('kategori.store') }}" method="POST">
                         @csrf
+
                         <div class="mb-3">
                             <label for="nama_kategori" class="form-label">Nama Kategori</label>
-                            <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" required>
+                            <input type="text" class="form-control @error('nama_kategori') is-invalid @enderror" id="nama_kategori" name="nama_kategori" value="{{ old('nama_kategori') }}">
+                            @error('nama_kategori')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
+
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>
+
                 </div>
             </div>
         </div>

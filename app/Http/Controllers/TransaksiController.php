@@ -20,6 +20,7 @@ class TransaksiController extends Controller
         return view('transaksi.create', compact('kategoris'));
     }
 
+
     public function store(Request $request)
     {
         $request->validate([
@@ -27,6 +28,11 @@ class TransaksiController extends Controller
             'kategori_id' => 'required|exists:kategoris,id',
             'jenis_transaksi' => 'required|in:pemasukan,pengeluaran',
             'jumlah_transaksi' => 'required|numeric|min:0',
+        ], [
+            'tanggal.required' => 'Bagian ini belum diisi',
+            'kategori_id.required' => 'Bagian ini belum diisi',
+            'jenis_transaksi.required' => 'Bagian ini belum diisi',
+            'jumlah_transaksi.required' => 'Bagian ini belum diisi',
         ]);
 
         Transaksi::create($request->all());
@@ -47,8 +53,13 @@ class TransaksiController extends Controller
             'kategori_id' => 'required|exists:kategoris,id',
             'jenis_transaksi' => 'required|in:pemasukan,pengeluaran',
             'jumlah_transaksi' => 'required|numeric|min:0',
+        ], [
+            'tanggal.required' => 'Bagian ini belum diisi',
+            'kategori_id.required' => 'Bagian ini belum diisi',
+            'jenis_transaksi.required' => 'Bagian ini belum diisi',
+            'jumlah_transaksi.required' => 'Bagian ini belum diisi',
         ]);
-
+        
         $transaksi = Transaksi::findOrFail($id);
         $transaksi->update($request->all());
         return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil diupdate');

@@ -22,6 +22,8 @@ class KategoriController extends Controller
     {
         $request->validate([
             'nama_kategori' => 'required|string|max:255',
+        ], [
+            'nama_kategori.required' => 'Bagian ini belum diisi',
         ]);
 
         Kategori::create($request->all());
@@ -38,6 +40,8 @@ class KategoriController extends Controller
     {
         $request->validate([
             'nama_kategori' => 'required|string|max:255',
+        ], [
+            'nama_kategori.required' => 'Bagian ini belum diisi',
         ]);
 
         $kategori = Kategori::findOrFail($id);
