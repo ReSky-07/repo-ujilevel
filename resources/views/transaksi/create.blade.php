@@ -13,11 +13,11 @@
                         @csrf
                         <div class="mb-3">
                             <label for="tanggal" class="form-label">Tanggal</label>
-                            <input type="date" class="form-control" id="tanggal" name="tanggal" required>
+                            <input type="date" class="form-control" id="tanggal" name="tanggal" >
                         </div>
                         <div class="mb-3">
                             <label for="kategori_id" class="form-label">Kategori</label>
-                            <select class="form-control" id="kategori_id" name="kategori_id" required>
+                            <select class="form-control" id="kategori_id" name="kategori_id" >
                                 <option value="">-- Pilih Kategori --</option>
                                 @foreach ($kategoris as $kategori)
                                 <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
@@ -26,7 +26,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="jenis_transaksi" class="form-label">Jenis Transaksi</label>
-                            <select class="form-control" id="jenis_transaksi" name="jenis_transaksi" required>
+                            <select class="form-control" id="jenis_transaksi" name="jenis_transaksi" >
                                 <option value="">-- Pilih Jenis Transaksi --</option>
                                 <option value="pemasukan">Pemasukan</option>
                                 <option value="pengeluaran">Pengeluaran</option>
@@ -34,7 +34,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="jumlah_transaksi" class="form-label">Jumlah Transaksi</label>
-                            <input type="number" class="form-control" id="jumlah_transaksi" name="jumlah_transaksi" required>
+                            <input type="number" class="form-control" id="jumlah_transaksi" name="jumlah_transaksi" >
                         </div>
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>
