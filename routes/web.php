@@ -10,7 +10,9 @@ use App\Http\Controllers\Admin\AdminKategoriController;
 use App\Http\Controllers\Admin\AdminTransaksiController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\PresensiController;
+use App\Http\Controllers\Admin\AdminContactController;
 use App\Http\Controllers\Admin\AdminDaftarKaryawanController;
+use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\User\UserDashboardController;
 use App\Http\Controllers\User\UserPresensiController;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::post('/contacts', [ContactController::class, 'store']);
 
 // User Route
 Route::middleware(['auth', 'UserMiddleware'])->group(function () {
@@ -88,6 +92,8 @@ Route::middleware(['auth', 'UserMiddleware'])->group(function () {
 
 // Admin Route
 Route::middleware(['auth', 'AdminMiddleware'])->group(function () {
+    // Tambahkan di dalam middleware group
+    Route::get('/admin/export-excel', [AdminDashboardController::class, 'exportExcel'])->name('admin.export.excel');
     // dashboard
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     // daftar karyawan
@@ -131,6 +137,14 @@ Route::middleware(['auth', 'AdminMiddleware'])->group(function () {
         Route::get('/', [PresensiController::class, 'index'])->name('admin.presensi.index');
         Route::delete('/{id}', [PresensiController::class, 'destroy'])->name('admin.presensi.destroy');
     });
+    // Rute untuk Admin Contact
+    Route::prefix('admin/contacts')->group(function () {
+        Route::get('/', [AdminContactController::class, 'index'])->name('admin.contacts.index');
+        Route::post('/', [AdminContactController::class, 'store'])->name('admin.contacts.store');
+        Route::delete('/{id}', [AdminContactController::class, 'destroy'])->name('admin.contacts.destroy');
+    });
 });
+
+
 
 require __DIR__ . '/auth.php';

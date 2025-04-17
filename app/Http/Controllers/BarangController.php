@@ -24,6 +24,10 @@ class BarangController extends Controller
             'tanggal_input' => 'required|date',
             'nama_barang' => 'required|string',
             'stok' => 'required|integer',
+        ],  [
+            'tanggal_input.required' => 'Bagian ini belum diisi',
+            'nama_barang.required' => 'Bagian ini belum diisi',
+            'stok.required' => 'Bagian ini belum diisi',
         ]);
 
         Barang::create($request->all());
@@ -43,6 +47,10 @@ class BarangController extends Controller
             'tanggal_input' => 'required|date',
             'nama_barang' => 'required|string',
             'stok' => 'required|integer',
+        ],  [
+            'tanggal_input.required' => 'Bagian ini belum diisi',
+            'nama_barang.required' => 'Bagian ini belum diisi',
+            'stok.required' => 'Bagian ini belum diisi',
         ]);
 
         $barang = Barang::findOrFail($id);

@@ -26,6 +26,21 @@ class AdminDaftarKaryawanController extends Controller
             'email' => 'required|email|unique:users',
             'gaji' => 'required|numeric',
             'password' => 'required|min:6', // Validasi password
+        ], [
+            'name.required' => 'Nama tidak boleh kosong.',
+            'name.string' => 'Nama harus berupa teks.',
+            'name.max' => 'Nama tidak boleh lebih dari 255 karakter.',
+    
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'email.unique' => 'Email sudah digunakan, coba yang lain.',
+    
+            'password.required' => 'Password wajib diisi.',
+            'password.min' => 'Password minimal 6 karakter.',
+    
+            'gaji.required' => 'Gaji wajib diisi.',
+            'gaji.numeric' => 'Gaji harus berupa angka.',
+            'gaji.min' => 'Gaji tidak boleh kurang dari 0.',
         ]);
 
         User::create([
@@ -51,6 +66,21 @@ class AdminDaftarKaryawanController extends Controller
             'email' => 'required|email|unique:users,email,' . $id,
             'gaji' => 'required|numeric',
             'password' => 'nullable|min:6', // Password opsional
+        ], [
+            'name.required' => 'Nama tidak boleh kosong.',
+            'name.string' => 'Nama harus berupa teks.',
+            'name.max' => 'Nama tidak boleh lebih dari 255 karakter.',
+    
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'email.unique' => 'Email sudah digunakan, coba yang lain.',
+    
+            'password.required' => 'Password wajib diisi.',
+            'password.min' => 'Password minimal 6 karakter.',
+    
+            'gaji.required' => 'Gaji wajib diisi.',
+            'gaji.numeric' => 'Gaji harus berupa angka.',
+            'gaji.min' => 'Gaji tidak boleh kurang dari 0.',
         ]);
 
         $karyawan = User::findOrFail($id);
