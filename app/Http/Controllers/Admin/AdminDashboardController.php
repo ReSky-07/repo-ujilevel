@@ -17,16 +17,13 @@ class AdminDashboardController extends Controller
         $pemasukan = Transaksi::where('jenis_transaksi', 'pemasukan')->sum('jumlah_transaksi');
         $pengeluaran = Transaksi::where('jenis_transaksi', 'pengeluaran')->sum('jumlah_transaksi');
 
-        $dataBulanan = Transaksi::select(
-            DB::raw("DATE_FORMAT(tanggal, '%Y-%m') as bulan"),
-            DB::raw("SUM(CASE WHEN jenis_transaksi = 'pemasukan' THEN jumlah_transaksi ELSE 0 END) as total_pemasukan"),
-            DB::raw("SUM(CASE WHEN jenis_transaksi = 'pengeluaran' THEN jumlah_transaksi ELSE 0 END) as total_pengeluaran")
-        )
-            ->groupBy('bulan')
-            ->orderBy('bulan')
+        // Ambil transaksi terbaru dengan data user
+        $transaksiTerbaru = Transaksi::with(['kategori', 'user'])
+            ->orderBy('created_at', 'desc')
+            ->limit(10)
             ->get();
 
-        return view('admin.dashboard', compact('pemasukan', 'pengeluaran', 'dataBulanan'));
+        return view('admin.dashboard', compact('pemasukan', 'pengeluaran', 'transaksiTerbaru'));
     }
 
     public function exportExcel()

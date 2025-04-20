@@ -11,7 +11,7 @@ class AdminTransaksiController extends Controller
 {
     public function index()
     {
-        $transaksis = Transaksi::with('kategori')->get();
+        $transaksis = Transaksi::with(['kategori', 'user'])->orderBy('created_at', 'desc')->get();
         return view('admin.transaksi.index', compact('transaksis'));
     }
 

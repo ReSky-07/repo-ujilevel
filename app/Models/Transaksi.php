@@ -14,10 +14,16 @@ class Transaksi extends Model
         'kategori_id',
         'jenis_transaksi',
         'jumlah_transaksi',
+        'user_id',
     ];
 
     public function kategori()
     {
         return $this->belongsTo(Kategori::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
