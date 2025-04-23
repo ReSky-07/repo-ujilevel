@@ -1,7 +1,7 @@
 <body class="sb-nav-fixed font-afacad">
     <nav class="sb-topnav navbar navbar-expand">
         <!-- Navbar Brand-->
-        <img style="width: 80px;" class="navbar-brand ps-3" src="{{ asset('storage/logo-bispin.png') }}" alt="Logo Bispin">
+        <img style="width: 80px;" class="navbar-logo ps-3" src="{{ asset('storage/logo-bispin.png') }}" alt="Logo Bispin">
         <!-- Sidebar Toggle-->
         <button class="button-sidebar btn"  id="sidebarToggle" href="#!">
             <i class="fas fa-bars"></i>
