@@ -33,7 +33,7 @@
                     <i class="fas fa-table me-1"></i>
                     Data Presensi
                 </div>
-                <div class="card-body">
+                <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>

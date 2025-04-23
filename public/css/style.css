@@ -1,6 +1,13 @@
 /* Import Font */
 @import url('https://fonts.googleapis.com/css2?family=Afacad:wght@400;700&display=swap');
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
 .font-afacad {
     font-family: 'Afacad', sans-serif !important;
 }
@@ -67,6 +74,31 @@
 }
 
 /* Sidenav */
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 998;
+    display: none;
+}
+
+.sidebar-visible #overlay {
+    display: block;
+}
+
+.sidebar-hidden #layoutSidenav_nav {
+    transform: translateX(-250px); /* Sembunyikan sidebar */
+}
+
+#layoutSidenav_nav {
+    transition: transform 0.3s ease;
+    z-index: 999;
+}
+
 .sidenav {
     background: linear-gradient(to bottom, #D90F00, #c40d00, #730800);
     width: 250px;
@@ -176,6 +208,11 @@ footer {
         padding: 10px;
     }
 
+    .button-sidebar{
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
     .sidenav {
         width: 200px;
     }
@@ -187,18 +224,39 @@ footer {
 
 @media (max-width: 768px) {
     #layoutSidenav_nav {
-        width: 0;
-        visibility: hidden;
+        width: 180px !important;
     }
 
     #layoutSidenav_content {
         margin-left: 0;
     }
 
+    .line{
+        width: 0;
+    }
+    
+    .sb-sidenav-menu{
+        margin-top: -20px !important;
+    }
+
     .navbar {
-        height: auto;
-        padding: 10px;
+        height: 75px !important;
         text-align: center;
+    }
+
+    .navbar-logo {
+        padding: 0 !important;
+        width: 75px !important;
+    }
+
+    .nav-link {
+        height: 10px !important;
+        margin-bottom: 20px !important;
+        padding-left: 10px !important;
+    }
+
+    .navbar-img{
+        width: 35px !important;
     }
 
     .btn-sm {
@@ -207,7 +265,7 @@ footer {
     }
 
     table {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
     }
 
     .btn-primary {
@@ -215,11 +273,21 @@ footer {
         width: 100%;
         margin: 10px 0;
     }
+
+    .btn-danger{
+        width: 55px;
+        height: 30px;
+    }
+
+    .btn-warning{
+        width: 55px;
+        height: 30px;
+    }
 }
 
 @media (max-width: 576px) {
     th, td {
-        font-size: 0.8rem;
+        white-space: nowrap;
     }
 
     footer {
