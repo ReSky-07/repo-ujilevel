@@ -17,6 +17,7 @@
 
             <div class="card mb-4">
                 <div class="card-header">
+                    <a href="{{ route('admin.transaksi.exportPdf') }}" class="btn btn-danger btn-sm float-end ms-2">Export PDF</a>
                     <i class="fas fa-table me-1"></i>
                     Data Transaksi
                     <a href="{{ route('admin.transaksi.create') }}" class="btn btn-primary btn-sm float-end">Tambah Transaksi</a>
