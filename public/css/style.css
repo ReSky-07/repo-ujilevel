@@ -40,9 +40,12 @@ html, body {
 
 /* Konten utama */
 #layoutSidenav_content {
-    transition: margin-left 0.3s ease-in-out;
+    transition: margin-left 0.3s ease;
     margin-left: 250px; /* Default, menyesuaikan sidebar */
-    height: 80vh;
+}
+
+.sidebar-visible #layoutSidenav_content {
+    margin-left: 0; /* Konten utama bergerak ketika sidebar ditutup */
 }
 
 #layoutSidenav_nav.collapsed + #layoutSidenav_content {
@@ -83,11 +86,15 @@ html, body {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
     z-index: 998;
-    display: none;
+    display: none; /* Default hidden */
 }
 
 .sidebar-visible #overlay {
-    display: block;
+    display: block; /* Show overlay when sidebar is visible */
+}
+
+.sidebar-visible #layoutSidenav_nav {
+    transform: translateX(0); /* Show sidebar when sidebar-visible is active */
 }
 
 .sidebar-hidden #layoutSidenav_nav {
@@ -95,8 +102,15 @@ html, body {
 }
 
 #layoutSidenav_nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #f8f9fa;
     transition: transform 0.3s ease;
     z-index: 999;
+    transform: translateX(-250px); /* Default hidden */
 }
 
 .sidenav {
