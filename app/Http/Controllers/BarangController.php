@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class BarangController extends Controller
 {
@@ -30,8 +32,11 @@ class BarangController extends Controller
             'stok.required' => 'Bagian ini belum diisi',
         ]);
 
-        Barang::create($request->all());
+        $data = $request->all();
+        $data['user_id'] = Auth::id(); // Ini penting!!
 
+
+        Barang::create($data);
         return redirect()->route('barang.index')->with('success', 'Barang berhasil ditambahkan.');
     }
 
