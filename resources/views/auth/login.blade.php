@@ -1,55 +1,81 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<!DOCTYPE html>
+<html lang="en">
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
 
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Afacad:wght@400;600;700&family=Sora:wght@400;600&display=swap" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}?v={{ time() }}">
+
+</head>
+
+<body class="bgAdmin font-afacad">
+
+    <div class="container-fluid min-vh-100 d-flex justify-content-center align-items-center">
+        <div class="row w-100 px-3" style="max-width: 1000px; width: 100%;"> <!-- max-width ditambah + padding -->
+
+            <!-- Bagian Kiri (Logo) -->
+            <div class="col-md-6 d-flex flex-column justify-content-center align-items-center bg-white">
+                <div class="text-center">
+                    <img src="{{ asset('assets/logo-bispin.png') }}" alt="Logo" class="logo-image mb-4" />
+                </div>
+            </div>
+
+            <!-- Bagian Kanan (Login Form) -->
+            <div class="login col-md-6 d-flex flex-column justify-content-center align-items-center" style="background-color: #b11004;">
+                <div class="login-section" style="width: 100%;">
+
+                    <div class="text-center mb-4">
+                        <h2 class="fw-bold text-white">Welcome To BisPin</h2>
+                        <p style="font-size: 25px;"><span style="color: #E74127;">Bisnis</span> <span style="color: #342F35;">Pintar</span></p>
+                    </div>
+
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+
+                        <div class="mb-3">
+                            <x-text-input id="name" class="form-control input-size" type="text" name="name"
+                                :value="old('name')" required autofocus placeholder="Username" />
+                            <x-input-error :messages="$errors->get('name')" class="text-danger mt-1" />
+                        </div>
+
+                        <div class="mb-3">
+                            <x-text-input id="email" class="form-control input-size" type="email" name="email"
+                                :value="old('email')" required placeholder="Email" />
+                            <x-input-error :messages="$errors->get('email')" class="text-danger mt-1" />
+                        </div>
+
+                        <div class="mb-4">
+                            <x-text-input id="password" class="form-control input-size" type="password" name="password"
+                                required placeholder="Password" />
+                            <x-input-error :messages="$errors->get('password')" class="text-danger mt-1" />
+                        </div>
+
+                        <div class="d-flex justify-content-center text-dark">
+                            <button type="submit" class="btn btn-login w-30">
+                                {{ __('Login') }}
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
         </div>
+    </div>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+</body>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                type="password"
-                name="password"
-                required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                {{ __('Forgot your password?') }}
-            </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+</html>
