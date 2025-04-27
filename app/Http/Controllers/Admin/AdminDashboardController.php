@@ -8,6 +8,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\MonthlyTransactionExport;
 use App\Models\Transaksi;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AdminDashboardController extends Controller
@@ -17,18 +18,31 @@ class AdminDashboardController extends Controller
         $pemasukan = Transaksi::where('jenis_transaksi', 'pemasukan')->sum('jumlah_transaksi');
         $pengeluaran = Transaksi::where('jenis_transaksi', 'pengeluaran')->sum('jumlah_transaksi');
 
-        $dataBulanan = Transaksi::select(
-            DB::raw("DATE_FORMAT(tanggal, '%Y-%m') as bulan"),
-            DB::raw("SUM(CASE WHEN jenis_transaksi = 'pemasukan' THEN jumlah_transaksi ELSE 0 END) as total_pemasukan"),
-            DB::raw("SUM(CASE WHEN jenis_transaksi = 'pengeluaran' THEN jumlah_transaksi ELSE 0 END) as total_pengeluaran")
-        )
-            ->groupBy('bulan')
-            ->orderBy('bulan')
+        // Ambil transaksi terbaru dengan data user
+        $transaksiTerbaru = Transaksi::with(['kategori', 'user'])
+            ->orderBy('created_at', 'desc')
+            ->limit(10)
             ->get();
 
-        return view('admin.dashboard', compact('pemasukan', 'pengeluaran', 'dataBulanan'));
-    }
+        // Data grafik 7 hari terakhir
+        $tanggalRange = collect(range(0, 29))->map(function ($i) {
+            return Carbon::now()->subDays($i)->format('Y-m-d');
+        })->reverse()->values();
 
+        $chartData = $tanggalRange->map(function ($tanggal) {
+            return [
+                'tanggal' => Carbon::parse($tanggal)->format('d M'),
+                'pemasukan' => Transaksi::whereDate('tanggal', $tanggal)
+                    ->where('jenis_transaksi', 'pemasukan')
+                    ->sum('jumlah_transaksi'),
+                'pengeluaran' => Transaksi::whereDate('tanggal', $tanggal)
+                    ->where('jenis_transaksi', 'pengeluaran')
+                    ->sum('jumlah_transaksi'),
+            ];
+        });
+
+        return view('admin.dashboard', compact('pemasukan', 'pengeluaran', 'transaksiTerbaru', 'chartData'));
+    }
     public function exportExcel()
     {
         return Excel::download(new MonthlyTransactionExport, 'laporan_transaksi_bulanan.xlsx');

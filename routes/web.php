@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\PresensiController;
 use App\Http\Controllers\Admin\AdminContactController;
 use App\Http\Controllers\Admin\AdminDaftarKaryawanController;
+use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\User\UserDashboardController;
 use App\Http\Controllers\User\UserPresensiController;
@@ -92,8 +93,6 @@ Route::middleware(['auth', 'UserMiddleware'])->group(function () {
 
 // Admin Route
 Route::middleware(['auth', 'AdminMiddleware'])->group(function () {
-    // Tambahkan di dalam middleware group
-    Route::get('/admin/export-excel', [AdminDashboardController::class, 'exportExcel'])->name('admin.export.excel');
     // dashboard
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     // daftar karyawan
@@ -131,6 +130,7 @@ Route::middleware(['auth', 'AdminMiddleware'])->group(function () {
         Route::get('/{id}/edit', [AdminTransaksiController::class, 'edit'])->name('admin.transaksi.edit');
         Route::put('/{id}', [AdminTransaksiController::class, 'update'])->name('admin.transaksi.update');
         Route::delete('/{id}', [AdminTransaksiController::class, 'destroy'])->name('admin.transaksi.destroy');
+        Route::get('/export-pdf', [AdminTransaksiController::class, 'exportPdf'])->name('admin.transaksi.exportPdf');
     });
     // Rute untuk Admin CRUD Presensi
     Route::prefix('admin/presensi')->group(function () {
@@ -143,8 +143,13 @@ Route::middleware(['auth', 'AdminMiddleware'])->group(function () {
         Route::post('/', [AdminContactController::class, 'store'])->name('admin.contacts.store');
         Route::delete('/{id}', [AdminContactController::class, 'destroy'])->name('admin.contacts.destroy');
     });
+    // Profile routes
+    Route::prefix('admin/profile')->group(function () {
+        Route::get('/', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
+        Route::patch('/', [AdminProfileController::class, 'update'])->name('admin.profile.update');
+        Route::put('/', [AdminProfileController::class, 'updatePassword'])->name('admin.password.update');
+    });
 });
-
 
 
 require __DIR__ . '/auth.php';

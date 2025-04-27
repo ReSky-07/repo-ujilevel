@@ -6,23 +6,40 @@ use App\Http\Controllers\Controller;
 use App\Models\Transaksi;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class AdminTransaksiController extends Controller
 {
     public function index()
     {
-        $transaksis = Transaksi::with('kategori')->get();
+        // Tampilkan transaksi beserta kategori dan user yang menginputnya
+        $transaksis = Transaksi::with(['kategori', 'user'])->orderBy('created_at', 'desc')->get();
         return view('admin.transaksi.index', compact('transaksis'));
     }
 
+    public function exportPdf()
+    {
+        $transaksis = Transaksi::with(['kategori', 'user'])->orderBy('tanggal', 'asc')->get();
+
+        $totalPemasukan = $transaksis->where('jenis_transaksi', 'pemasukan')->sum('jumlah_transaksi');
+        $totalPengeluaran = $transaksis->where('jenis_transaksi', 'pengeluaran')->sum('jumlah_transaksi');
+
+        $pdf = PDF::loadView('admin.transaksi.laporan_pdf', compact('transaksis', 'totalPemasukan', 'totalPengeluaran'));
+        return $pdf->download('laporan_keuangan.pdf');
+    }
+
+
     public function create()
     {
+        // Ambil data kategori untuk dropdown
         $kategoris = Kategori::all();
         return view('admin.transaksi.create', compact('kategoris'));
     }
 
     public function store(Request $request)
     {
+        // Validasi input dari form
         $request->validate([
             'tanggal' => 'required|date',
             'kategori_id' => 'required|exists:kategoris,id',
@@ -35,12 +52,20 @@ class AdminTransaksiController extends Controller
             'jumlah_transaksi.required' => 'Bagian ini belum diisi',
         ]);
 
-        Transaksi::create($request->all());
+        // Ambil data request dan tambahkan user_id dari admin yang sedang login
+        $data = $request->all();
+        $data['user_id'] = Auth::id();  // Menyimpan ID user yang sedang login (admin)
+
+        // Simpan transaksi
+        Transaksi::create($data);
+
+        // Redirect ke halaman transaksi dengan pesan sukses
         return redirect()->route('admin.transaksi.index')->with('success', 'Transaksi berhasil ditambahkan');
     }
 
     public function edit($id)
     {
+        // Ambil transaksi yang akan diedit
         $transaksi = Transaksi::findOrFail($id);
         $kategoris = Kategori::all();
         return view('admin.transaksi.edit', compact('transaksi', 'kategoris'));
@@ -48,6 +73,7 @@ class AdminTransaksiController extends Controller
 
     public function update(Request $request, $id)
     {
+        // Validasi input dari form
         $request->validate([
             'tanggal' => 'required|date',
             'kategori_id' => 'required|exists:kategoris,id',
@@ -60,15 +86,27 @@ class AdminTransaksiController extends Controller
             'jumlah_transaksi.required' => 'Bagian ini belum diisi',
         ]);
 
+        // Ambil data transaksi yang ada
         $transaksi = Transaksi::findOrFail($id);
-        $transaksi->update($request->all());
+
+        // Pertahankan user_id asli jika transaksi diupdate oleh admin
+        $data = $request->all();
+        $data['user_id'] = $transaksi->user_id; // Jangan hilangkan user_id asli
+
+        // Update transaksi
+        $transaksi->update($data);
+
+        // Redirect ke halaman transaksi dengan pesan sukses
         return redirect()->route('admin.transaksi.index')->with('success', 'Transaksi berhasil diupdate');
     }
 
     public function destroy($id)
     {
+        // Hapus transaksi
         $transaksi = Transaksi::findOrFail($id);
         $transaksi->delete();
+
+        // Redirect ke halaman transaksi dengan pesan sukses
         return redirect()->route('admin.transaksi.index')->with('success', 'Transaksi berhasil dihapus');
     }
 }

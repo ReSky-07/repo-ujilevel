@@ -3,7 +3,7 @@
         <!-- Navbar Brand-->
         <img style="width: 80px;" class="navbar-logo ps-3" src="{{ asset('storage/logo-bispin.png') }}" alt="Logo Bispin">
         <!-- Sidebar Toggle-->
-        <button class="button-sidebar btn"  id="sidebarToggle" href="#!">
+        <button class="button-sidebar btn" id="sidebarToggle" href="#!">
             <i class="fas fa-bars"></i>
         </button>
         <!-- Navbar-->
@@ -15,8 +15,7 @@
                     {{ Auth::user()->name }}
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!">Settings</a></li>
-                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.profile.edit') }}">Edit Profile</a></li>
                     <li>
                         <hr class="dropdown-divider" />
                     </li>

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('kategori_id');
             $table->enum('jenis_transaksi', ['pemasukan', 'pengeluaran']);
             $table->decimal('jumlah_transaksi', 15, 2);
+            $table->foreignId('user_id')->constrained()->after('id');
             $table->timestamps();
-    
             $table->foreign('kategori_id')->references('id')->on('kategoris')->onDelete('cascade');
       
         });
