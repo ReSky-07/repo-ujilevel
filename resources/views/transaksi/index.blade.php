@@ -52,15 +52,24 @@
             </div>
         </div>
     </main>
+
+    <!-- Include jQuery and SweetAlert2 libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <script>
         $(document).ready(function() {
             $('.delete-btn').click(function(e) {
                 e.preventDefault();
                 var form = $(this).closest('.delete-form');
+                
                 Swal.fire({
                     title: 'Yakin ingin menghapus?',
+                    text: "Data transaksi akan dihapus permanen!",
                     icon: 'warning',
                     showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
                     confirmButtonText: 'Ya, hapus!',
                     cancelButtonText: 'Batal'
                 }).then((result) => {
@@ -71,5 +80,6 @@
             });
         });
     </script>
+    
     @include('partials.footer')
 </div>

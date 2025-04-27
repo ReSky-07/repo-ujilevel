@@ -60,10 +60,14 @@
                                 <td>{{ $transaksi->created_at->format('d/m/Y H:i') }}</td>
                                 <td>
                                     <a href="{{ route('admin.transaksi.edit', $transaksi->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('admin.transaksi.destroy', $transaksi->id) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('admin.transaksi.destroy', $transaksi->id) }}" method="POST" class="delete-form d-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</button>
+                                        <button type="button" class="btn btn-danger btn-sm delete-btn" 
+                                            data-id="{{ $transaksi->id }}" 
+                                            data-kategori="{{ $transaksi->kategori->nama_kategori }}"
+                                            data-jenis="{{ $transaksi->jenis_transaksi }}"
+                                            data-jumlah="{{ number_format($transaksi->jumlah_transaksi, 2, ',', '.') }}">Hapus</button>
                                     </form>
                                 </td>
                             </tr>
@@ -74,5 +78,40 @@
             </div>
         </div>
     </main>
+    
+    <!-- Script untuk SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tangkap semua tombol delete
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const kategori = this.getAttribute('data-kategori');
+                    const jenis = this.getAttribute('data-jenis');
+                    const jumlah = this.getAttribute('data-jumlah');
+                    const form = this.closest('.delete-form');
+                    
+                    Swal.fire({
+                        title: 'Konfirmasi Hapus',
+                        html: `Anda yakin ingin menghapus transaksi <strong>${jenis}</strong> kategori <strong>${kategori}</strong> dengan jumlah <strong>Rp ${jumlah}</strong>?`,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Ya, Hapus!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    
     @include('admin.admin_partials.footer')
 </div>

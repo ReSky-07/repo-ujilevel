@@ -56,11 +56,12 @@
                                 <td><img src="{{ asset('storage/' . $presensi->foto) }}" width="50"></td>
                                 <td>{{ $presensi->catatan ?? '-' }}</td>
                                 <td>
-                                    <form action="{{ route('admin.presensi.destroy', $presensi->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
-                                    </form>
+                                    <button type="button" class="btn btn-danger btn-sm delete-btn" 
+                                        data-id="{{ $presensi->id }}"
+                                        data-name="{{ $presensi->nama }}"
+                                        data-date="{{ $presensi->tanggal }}">
+                                        Hapus
+                                    </button>
                                 </td>
                             </tr>
                             @endforeach
@@ -72,5 +73,56 @@
             </div>
         </div>
     </main>
+
+    <!-- Script untuk Konfirmasi Delete dengan SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tangkap semua tombol hapus
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const name = this.getAttribute('data-name');
+                    const date = this.getAttribute('data-date');
+                    
+                    Swal.fire({
+                        title: 'Konfirmasi Hapus',
+                        html: `Anda yakin ingin menghapus presensi <strong>${name}</strong> pada tanggal <strong>${date}</strong>?`,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Ya, Hapus!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Buat form untuk submit
+                            const form = document.createElement('form');
+                            form.action = '{{ route("admin.presensi.destroy", "") }}/' + id;
+                            form.method = 'POST';
+                            form.style.display = 'none';
+                            
+                            const csrfToken = document.createElement('input');
+                            csrfToken.type = 'hidden';
+                            csrfToken.name = '_token';
+                            csrfToken.value = '{{ csrf_token() }}';
+                            
+                            const method = document.createElement('input');
+                            method.type = 'hidden';
+                            method.name = '_method';
+                            method.value = 'DELETE';
+                            
+                            form.appendChild(csrfToken);
+                            form.appendChild(method);
+                            document.body.appendChild(form);
+                            form.submit();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 
     @include('admin.admin_partials.footer')

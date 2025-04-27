@@ -51,10 +51,12 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.barang.edit', $barang->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('admin.barang.destroy', $barang->id) }}" method="POST" style="display:inline;">
+                                    <form action="{{ route('admin.barang.destroy', $barang->id) }}" method="POST" class="delete-form d-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                        <button type="button" class="btn btn-danger btn-sm delete-btn" 
+                                            data-id="{{ $barang->id }}" 
+                                            data-name="{{ $barang->nama_barang }}">Hapus</button>
                                     </form>
                                 </td>
                             </tr>
@@ -74,15 +76,16 @@
             $('.delete-btn').click(function(e) {
                 e.preventDefault();
                 var form = $(this).closest('.delete-form');
-
+                var name = $(this).data('name');
+                
                 Swal.fire({
-                    title: 'Apakah Anda yakin?',
-                    text: "Data karyawan akan dihapus permanen!",
+                    title: 'Konfirmasi Hapus',
+                    html: 'Apakah Anda yakin ingin menghapus barang <strong>' + name + '</strong>?',
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya, hapus!',
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Ya, Hapus!',
                     cancelButtonText: 'Batal'
                 }).then((result) => {
                     if (result.isConfirmed) {

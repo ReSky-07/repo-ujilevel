@@ -50,7 +50,12 @@
                                     <form action="{{ route('admin.contacts.destroy', $contact->id) }}" method="POST" class="d-inline delete-form">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm delete-btn">Hapus</button>
+                                        <button type="button" class="btn btn-danger btn-sm delete-btn" 
+                                               data-id="{{ $contact->id }}"
+                                               data-name="{{ $contact->name }}"
+                                               data-email="{{ $contact->email }}">
+                                            Hapus
+                                        </button>
                                     </form>
                                 </td>
                             </tr>
@@ -72,18 +77,31 @@
             $('.delete-btn').click(function(e) {
                 e.preventDefault();
                 var form = $(this).closest('.delete-form');
+                var name = $(this).data('name');
+                var email = $(this).data('email');
 
                 Swal.fire({
-                    title: 'Apakah Anda yakin?',
-                    text: "Kontak ini akan dihapus permanen!",
+                    title: 'Konfirmasi Hapus',
+                    html: `Anda yakin ingin menghapus kontak <strong>${name}</strong> (${email})?`,
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya, hapus!',
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Ya, Hapus!',
                     cancelButtonText: 'Batal'
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        // Tampilkan loading state
+                        Swal.fire({
+                            title: 'Menghapus...',
+                            text: 'Sedang menghapus data kontak',
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
+                        });
+                        
+                        // Submit form
                         form.submit();
                     }
                 });

@@ -36,10 +36,10 @@
                                 <td>{{ $barang->stok }}</td>
                                 <td>
                                     <a href="{{ route('barang.edit', $barang->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('barang.destroy', $barang->id) }}" method="POST" style="display:inline;">
+                                    <form action="{{ route('barang.destroy', $barang->id) }}" method="POST" class="delete-form" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                        <button type="button" class="btn btn-danger btn-sm delete-btn">Hapus</button>
                                     </form>
                                 </td>
                             </tr>
@@ -61,7 +61,7 @@
 
                 Swal.fire({
                     title: 'Apakah Anda yakin?',
-                    text: "Data karyawan akan dihapus permanen!",
+                    text: "Data barang akan dihapus permanen!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
