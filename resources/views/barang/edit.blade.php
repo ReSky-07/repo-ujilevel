@@ -2,7 +2,6 @@
 @include ('admin.admin_partials.navbar')
 @include ('admin.admin_partials.sidebar')
 
-</div>
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">

@@ -2,7 +2,6 @@
 @include('partials.navbar')
 @include('partials.sidebar')
 
-</div>
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
@@ -16,39 +15,6 @@
             @if(session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
-
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-table me-1"></i>
-                    Tabel Presensi
-                </div>
-                <div class="card-body">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Tanggal</th>
-                                <th>Keterangan</th>
-                                <th>Foto</th>
-                                <th>Catatan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($presensis as $presensi)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $presensi->tanggal }}</td>
-                                <td>{{ $presensi->keterangan }}</td>
-                                <td><img src="{{ asset('storage/' . $presensi->foto) }}" width="50"></td>
-                                <td>{{ $presensi->catatan ?? '-' }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-
-                    {{ $presensis->links() }}
-                </div>
-            </div>
         </div>
     </main>
 

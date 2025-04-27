@@ -1,7 +1,6 @@
 @extends('partials.header')
 @include('partials.navbar')
 @include('partials.sidebar')
-</div>
 
 <div id="layoutSidenav_content">
     <main>

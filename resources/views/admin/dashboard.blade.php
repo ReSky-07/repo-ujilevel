@@ -29,6 +29,16 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <a style="text-decoration: none; color: inherit;" class="small stretched-link" href="{{ route('admin.daftar_karyawan.index') }}">
+                                <h5 class="text-primary">Jumlah Karyawan</h5>
+                                <h2>{{ $jumlahKaryawan }} Orang</h2>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="row mt-4">

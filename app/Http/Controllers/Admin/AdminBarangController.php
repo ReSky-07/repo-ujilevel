@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Barang;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth;
+
 
 class AdminBarangController extends Controller
 {
@@ -14,6 +17,13 @@ class AdminBarangController extends Controller
         return view('admin.barang.index', compact('barangs'));
     }
 
+    public function exportPdf()
+    {
+        $barangs = Barang::all(); // Panggil semua data barang
+
+        $pdf = Pdf::loadView('admin.barang.exportPdf', compact('barangs'));
+        return $pdf->download('daftar-barang.pdf');
+    }
     public function create()
     {
         return view('admin.barang.create');
@@ -38,7 +48,10 @@ class AdminBarangController extends Controller
             'stok.min' => 'Stok tidak boleh kurang dari 0.',
         ]);
 
-        Barang::create($request->all());
+        $data = $request->all(); // Ambil semua request
+        $data['user_id'] = Auth::id(); // Tambahkan user_id ke data
+
+        Barang::create($data); // Simpan data ke tabel
 
         return redirect()->route('admin.barang.index')->with('success', 'Barang berhasil ditambahkan.');
     }

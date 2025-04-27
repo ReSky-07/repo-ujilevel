@@ -15,6 +15,10 @@ class Barang extends Model
         'tanggal_input',
         'nama_barang',
         'stok',
+        'user_id',
     ];
-
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

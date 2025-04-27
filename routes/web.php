@@ -112,6 +112,7 @@ Route::middleware(['auth', 'AdminMiddleware'])->group(function () {
         Route::get('/{id}/edit', [AdminBarangController::class, 'edit'])->name('admin.barang.edit');
         Route::put('/{id}', [AdminBarangController::class, 'update'])->name('admin.barang.update');
         Route::delete('/{id}', [AdminBarangController::class, 'destroy'])->name('admin.barang.destroy');
+        Route::get('/export-pdf', [AdminBarangController::class, 'exportPdf'])->name('admin.barang.exportPdf');
     });
     // Daftar Kategori
     Route::prefix('admin/kategori')->group(function () {

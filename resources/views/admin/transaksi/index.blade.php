@@ -16,11 +16,15 @@
             @endif
 
             <div class="card mb-4">
-                <div class="card-header">
-                    <a href="{{ route('admin.transaksi.exportPdf') }}" class="btn btn-danger btn-sm float-end ms-2">Export PDF</a>
-                    <i class="fas fa-table me-1"></i>
-                    Data Transaksi
-                    <a href="{{ route('admin.transaksi.create') }}" class="btn btn-primary btn-sm float-end">Tambah Transaksi</a>
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div>
+                        <i class="fas fa-table me-1"></i>
+                        Data Transaksi
+                    </div>
+                    <div class="d-flex">
+                        <a href="{{ route('admin.transaksi.exportPdf') }}" class="btn btn-success btn-sm me-2">Export PDF</a>
+                        <a href="{{ route('admin.transaksi.create') }}" class="btn btn-primary btn-sm">Tambah Transaksi</a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <table id="datatablesSimple" class="table table-striped table-bordered">

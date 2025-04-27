@@ -13,12 +13,17 @@
             </ol>
 
             <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-table me-1"></i>
-                    Daftar Barang
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div>
+                        <i class="fas fa-table me-1"></i>
+                        Data Barang
+                    </div>
+                    <div class="d-flex">
+                        <a href="{{ route('admin.barang.exportPdf') }}" class="btn btn-success btn-sm me-2">Export PDF</a>
+                        <a href="{{ route('admin.barang.create') }}" class="btn btn-primary btn-sm me-2">Tambah Barang</a>
+                    </div>
                 </div>
                 <div class="card-body">
-                    <a href="{{ route('admin.barang.create') }}" class="btn btn-primary mb-3">Tambah Barang</a>
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
@@ -26,6 +31,7 @@
                                 <th>Tanggal Input</th>
                                 <th>Nama Barang</th>
                                 <th>Stok</th>
+                                <th>Diinput Oleh</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -36,6 +42,13 @@
                                 <td>{{ $barang->tanggal_input }}</td>
                                 <td>{{ $barang->nama_barang }}</td>
                                 <td>{{ $barang->stok }}</td>
+                                <td>
+                                    @if($barang->user)
+                                    {{ $barang->user->name }}
+                                    @else
+                                    <em>Tidak tercatat</em>
+                                    @endif
+                                </td>
                                 <td>
                                     <a href="{{ route('admin.barang.edit', $barang->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                     <form action="{{ route('admin.barang.destroy', $barang->id) }}" method="POST" style="display:inline;">
@@ -52,7 +65,7 @@
             </div>
         </div>
     </main>
-    
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

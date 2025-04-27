@@ -26,23 +26,6 @@
                         </div>
                     @endif
 
-                    {{-- Form Tambah Kontak Manual --}}
-                    <form method="POST" action="{{ route('admin.contacts.store') }}" class="mb-4">
-                        @csrf
-                        <div class="row mb-3">
-                            <div class="col-md-4">
-                                <input type="text" name="name" class="form-control" placeholder="Nama" required>
-                            </div>
-                            <div class="col-md-4">
-                                <input type="email" name="email" class="form-control" placeholder="Email" required>
-                            </div>
-                            <div class="col-md-4">
-                                <input type="text" name="pesan" class="form-control" placeholder="Pesan" required>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Tambah Kontak</button>
-                    </form>
-
                     {{-- Tabel Kontak --}}
                     <table id="datatablesSimple">
                         <thead>
