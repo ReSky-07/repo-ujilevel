@@ -1,4 +1,4 @@
-@extends('partials.header')
+@include('partials.header')
 @include('partials.navbar')
 @include('partials.sidebar')
 </div>

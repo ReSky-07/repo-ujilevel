@@ -1,7 +1,6 @@
-@extends('admin.admin_partials.header')
+@include('admin.admin_partials.header')
 @include('admin.admin_partials.navbar')
 @include('admin.admin_partials.sidebar')
-
 </div>
 <div id="layoutSidenav_content">
     <main>
@@ -21,9 +20,7 @@
                 <select name="tanggal" id="tanggal" class="form-control" onchange="this.form.submit()">
                     <option value="">Semua Tanggal</option>
                     @foreach ($tanggalList as $tgl)
-                    <option value="{{ $tgl->tanggal }}" {{ $tgl->tanggal == request('tanggal') ? 'selected' : '' }}>
-                        {{ $tgl->tanggal }}
-                    </option>
+                    <option value="{{ $tgl->tanggal }}" {{ $tgl->tanggal == request('tanggal') ? 'selected' : '' }}>{{ $tgl->tanggal }}</option>
                     @endforeach
                 </select>
             </form>
@@ -34,7 +31,7 @@
                     Data Presensi
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table id="datatablesSimple" class="table table-striped table-bordered">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -75,6 +72,13 @@
     </main>
 
     <!-- Script untuk Konfirmasi Delete dengan SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            new simpleDatatables.DataTable("#datatablesSimple");
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -124,5 +128,6 @@
             });
         });
     </script>
+    
 
     @include('admin.admin_partials.footer')

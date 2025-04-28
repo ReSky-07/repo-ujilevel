@@ -24,18 +24,21 @@ class TransaksiController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'tanggal' => 'required|date',
-            'kategori_id' => 'required|exists:kategoris,id',
-            'jenis_transaksi' => 'required|in:pemasukan,pengeluaran',
-            'jumlah_transaksi' => 'required|numeric|min:0',
-        ], [
-            'tanggal.required' => 'Bagian ini belum diisi',
-            'kategori_id.required' => 'Bagian ini belum diisi',
-            'jenis_transaksi.required' => 'Bagian ini belum diisi',
-            'jumlah_transaksi.required' => 'Bagian ini belum diisi',
-        ]);
-        // Tambahkan user_id dari user yang sedang login
+   // In the store method
+$request->validate([
+    'tanggal' => 'required|date',
+    'kategori_id' => 'required|exists:kategoris,id',
+    'jenis_transaksi' => 'required|in:pemasukan,pengeluaran',
+    'jumlah_transaksi' => 'required|numeric|min:1000|max:1000000000', // Adding min and max values
+], [
+    'tanggal.required' => 'Bagian ini belum diisi',
+    'kategori_id.required' => 'Bagian ini belum diisi',
+    'jenis_transaksi.required' => 'Bagian ini belum diisi',
+    'jumlah_transaksi.required' => 'Bagian ini belum diisi',
+    'jumlah_transaksi.numeric' => 'Jumlah transaksi harus berupa angka',
+    'jumlah_transaksi.min' => 'Jumlah transaksi minimal Rp 1.000',
+    'jumlah_transaksi.max' => 'Jumlah transaksi maksimal Rp 1.000.000.000',
+]);     // Tambahkan user_id dari user yang sedang login
         $data = $request->all();
         $data['user_id'] = auth()->id();
 
@@ -56,14 +59,16 @@ class TransaksiController extends Controller
             'tanggal' => 'required|date',
             'kategori_id' => 'required|exists:kategoris,id',
             'jenis_transaksi' => 'required|in:pemasukan,pengeluaran',
-            'jumlah_transaksi' => 'required|numeric|min:0',
+            'jumlah_transaksi' => 'required|numeric|min:1000|max:1000000000', // Adding min and max values
         ], [
             'tanggal.required' => 'Bagian ini belum diisi',
             'kategori_id.required' => 'Bagian ini belum diisi',
             'jenis_transaksi.required' => 'Bagian ini belum diisi',
             'jumlah_transaksi.required' => 'Bagian ini belum diisi',
+            'jumlah_transaksi.numeric' => 'Jumlah transaksi harus berupa angka',
+            'jumlah_transaksi.min' => 'Jumlah transaksi minimal Rp 1.000',
+            'jumlah_transaksi.max' => 'Jumlah transaksi maksimal Rp 1.000.000.000',
         ]);
-
         $transaksi = Transaksi::findOrFail($id);
     
         // Update data dan simpan user_id original (jangan sampai hilang)

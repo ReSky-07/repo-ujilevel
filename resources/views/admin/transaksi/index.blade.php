@@ -83,34 +83,34 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Tangkap semua tombol delete
-            const deleteButtons = document.querySelectorAll('.delete-btn');
+    // Use event delegation by attaching the listener to the table body
+    document.querySelector('tbody').addEventListener('click', function(e) {
+        // Check if the clicked element is a delete button
+        if (e.target.classList.contains('delete-btn')) {
+            const button = e.target;
+            const id = button.getAttribute('data-id');
+            const kategori = button.getAttribute('data-kategori');
+            const jenis = button.getAttribute('data-jenis');
+            const jumlah = button.getAttribute('data-jumlah');
+            const form = button.closest('.delete-form');
             
-            deleteButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const id = this.getAttribute('data-id');
-                    const kategori = this.getAttribute('data-kategori');
-                    const jenis = this.getAttribute('data-jenis');
-                    const jumlah = this.getAttribute('data-jumlah');
-                    const form = this.closest('.delete-form');
-                    
-                    Swal.fire({
-                        title: 'Konfirmasi Hapus',
-                        html: `Anda yakin ingin menghapus transaksi <strong>${jenis}</strong> kategori <strong>${kategori}</strong> dengan jumlah <strong>Rp ${jumlah}</strong>?`,
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#d33',
-                        cancelButtonColor: '#3085d6',
-                        confirmButtonText: 'Ya, Hapus!',
-                        cancelButtonText: 'Batal'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            form.submit();
-                        }
-                    });
-                });
+            Swal.fire({
+                title: 'Konfirmasi Hapus',
+                html: `Anda yakin ingin menghapus transaksi <strong>${jenis}</strong> kategori <strong>${kategori}</strong> dengan jumlah <strong>Rp ${jumlah}</strong>?`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
             });
-        });
+        }
+    });
+});
     </script>
     
     @include('admin.admin_partials.footer')

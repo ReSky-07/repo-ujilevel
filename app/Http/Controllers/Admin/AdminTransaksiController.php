@@ -39,18 +39,22 @@ class AdminTransaksiController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi input dari form
-        $request->validate([
-            'tanggal' => 'required|date',
-            'kategori_id' => 'required|exists:kategoris,id',
-            'jenis_transaksi' => 'required|in:pemasukan,pengeluaran',
-            'jumlah_transaksi' => 'required|numeric|min:0',
-        ], [
-            'tanggal.required' => 'Bagian ini belum diisi',
-            'kategori_id.required' => 'Bagian ini belum diisi',
-            'jenis_transaksi.required' => 'Bagian ini belum diisi',
-            'jumlah_transaksi.required' => 'Bagian ini belum diisi',
-        ]);
+       // In the store method
+$request->validate([
+    'tanggal' => 'required|date',
+    'kategori_id' => 'required|exists:kategoris,id',
+    'jenis_transaksi' => 'required|in:pemasukan,pengeluaran',
+    'jumlah_transaksi' => 'required|numeric|min:1000|max:1000000000|regex:/^\d+(\.\d{1,2})?$/', 
+], [
+    'tanggal.required' => 'Bagian ini belum diisi',
+    'kategori_id.required' => 'Bagian ini belum diisi',
+    'jenis_transaksi.required' => 'Bagian ini belum diisi',
+    'jumlah_transaksi.required' => 'Jumlah transaksi harus diisi',
+    'jumlah_transaksi.numeric' => 'Jumlah transaksi harus berupa angka',
+    'jumlah_transaksi.min' => 'Jumlah transaksi minimal Rp 1.000',
+    'jumlah_transaksi.max' => 'Jumlah transaksi maksimal Rp 1.000.000.000',
+    'jumlah_transaksi.regex' => 'Format jumlah transaksi tidak valid (maksimal 2 angka desimal)',
+]);
 
         // Ambil data request dan tambahkan user_id dari admin yang sedang login
         $data = $request->all();
@@ -73,19 +77,22 @@ class AdminTransaksiController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Validasi input dari form
-        $request->validate([
-            'tanggal' => 'required|date',
-            'kategori_id' => 'required|exists:kategoris,id',
-            'jenis_transaksi' => 'required|in:pemasukan,pengeluaran',
-            'jumlah_transaksi' => 'required|numeric|min:0',
-        ], [
-            'tanggal.required' => 'Bagian ini belum diisi',
-            'kategori_id.required' => 'Bagian ini belum diisi',
-            'jenis_transaksi.required' => 'Bagian ini belum diisi',
-            'jumlah_transaksi.required' => 'Bagian ini belum diisi',
-        ]);
-
+      // In the update method
+$request->validate([
+    'tanggal' => 'required|date',
+    'kategori_id' => 'required|exists:kategoris,id',
+    'jenis_transaksi' => 'required|in:pemasukan,pengeluaran',
+    'jumlah_transaksi' => 'required|numeric|min:1000|max:1000000000|regex:/^\d+(\.\d{1,2})?$/',
+], [
+    'tanggal.required' => 'Bagian ini belum diisi',
+    'kategori_id.required' => 'Bagian ini belum diisi',
+    'jenis_transaksi.required' => 'Bagian ini belum diisi',
+    'jumlah_transaksi.required' => 'Jumlah transaksi harus diisi',
+    'jumlah_transaksi.numeric' => 'Jumlah transaksi harus berupa angka',
+    'jumlah_transaksi.min' => 'Jumlah transaksi minimal Rp 1.000',
+    'jumlah_transaksi.max' => 'Jumlah transaksi maksimal Rp 1.000.000.000',
+    'jumlah_transaksi.regex' => 'Format jumlah transaksi tidak valid (maksimal 2 angka desimal)',
+]);
         // Ambil data transaksi yang ada
         $transaksi = Transaksi::findOrFail($id);
 

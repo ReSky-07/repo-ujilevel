@@ -1,4 +1,4 @@
-@extends('admin.admin_partials.header')
+@include('admin.admin_partials.header')
 @include('admin.admin_partials.navbar')
 @include('admin.admin_partials.sidebar')
 

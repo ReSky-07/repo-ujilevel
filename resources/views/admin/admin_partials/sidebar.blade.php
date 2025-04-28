@@ -5,31 +5,31 @@
                 <div class="nav">
                     <div class="line mb-1"></div>
                     <a class="nav-link {{ Request::is('admin/dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
-                        <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('storage/home.png') }}">
+                        <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/home.png') }}">
                         Dashboard
                     </a>
-                    <a class="nav-link {{ Request::is('admin/presensi') ? 'active' : '' }}" href="{{ route('admin.presensi.index') }}">
-                        <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('storage/absensi.png') }}">
-                        Presensi
-                    </a>
                     <a class="nav-link {{ Request::is('admin/daftar_karyawan') ? 'active' : '' }}" href="{{ route('admin.daftar_karyawan.index') }}">
-                        <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('storage/karyawan.png') }}">
+                        <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/karyawan.png') }}">
                         Daftar Karyawan
                     </a>
+                    <a class="nav-link {{ Request::is('admin/presensi') ? 'active' : '' }}" href="{{ route('admin.presensi.index') }}">
+                        <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/absensi.png') }}">
+                        Presensi
+                    </a>
                     <a class="nav-link {{ Request::is('admin/barang') ? 'active' : '' }}" href="{{ route('admin.barang.index') }}">
-                        <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('storage/kelolabarang.png') }}">
+                        <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/kelolabarang.png') }}">
                         Kelola Barang
                     </a>
                     <a class="nav-link {{ Request::is('admin/kategori') ? 'active' : '' }}" href="{{ route('admin.kategori.index') }}">
-                        <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('storage/kategori.png') }}">
+                        <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/kategori.png') }}">
                         Kelola Kategori
                     </a>
                     <a class="nav-link {{ Request::is('admin/transaksi') ? 'active' : '' }}" href="{{ route('admin.transaksi.index') }}">
-                        <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('storage/transaksi.png') }}">
+                        <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/transaksi.png') }}">
                         Kelola Transaksi
                     </a>
                     <a class="nav-link {{ Request::is('admin/contacts') ? 'active' : '' }}" href="{{ route('admin.contacts.index') }}">
-                        <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('storage/transaksi.png') }}">
+                        <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/transaksi.png') }}">
                         Feedback
                     </a>
                     <div class="sb-sidenav-footer">
