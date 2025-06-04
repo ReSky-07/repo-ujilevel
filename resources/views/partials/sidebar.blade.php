@@ -10,21 +10,9 @@
                         <img style="padding-right: 10px;" class="navbar-img" src="{{ asset('assets/home.png') }}">
                         Dashboard
                     </a>
-                    <a class="nav-link {{ Request::is('/presensi') ? 'active' : '' }}" href="{{ route('presensi.index') }}">
-                        <img style="padding-right: 10px;" class="navbar-img" src="{{ asset('assets/absensi.png') }}">
-                        Presensi
-                    </a>
-                    <a class="nav-link {{ Request::is('/barang') ? 'active' : '' }}" href="{{ route('barang.index') }}">
+                    <a class="nav-link {{ Request::is('/penjualan') ? 'active' : '' }}" href="{{ route('penjualan.index') }}">
                         <img style="padding-right: 10px;" class="navbar-img" src="{{ asset('assets/kelolabarang.png') }}">
-                        Kelola Barang
-                    </a>
-                    <a class="nav-link {{ Request::is('/kategori') ? 'active' : '' }}" href="{{ route('kategori.index') }}">
-                        <img style="padding-right: 10px;" class="navbar-img" src="{{ asset('assets/kategori.png') }}">
-                        Kelola Kategori
-                    </a>
-                    <a class="nav-link {{ Request::is('/transaksi') ? 'active' : '' }}" href="{{ route('transaksi.index') }}">
-                        <img style="padding-right: 10px;" class="navbar-img" src="{{ asset('assets/transaksi.png') }}">
-                        Kelola Transaksi
+                        Penjualan harian
                     </a>
                 </div>
             </div>

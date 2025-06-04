@@ -13,6 +13,11 @@ use App\Http\Controllers\Admin\PresensiController;
 use App\Http\Controllers\Admin\AdminContactController;
 use App\Http\Controllers\Admin\AdminDaftarKaryawanController;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\AdminDaftarProdukController;
+use App\Http\Controllers\Admin\AdminPenjualanHarianController;
+use App\Http\Controllers\Admin\AdminPemasukanController;
+use App\Http\Controllers\EmployeePenjualanController;
+use App\Http\Controllers\EmployeePemasukanController;
 use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\User\UserDashboardController;
 use App\Http\Controllers\User\UserPresensiController;
@@ -89,6 +94,21 @@ Route::middleware(['auth', 'UserMiddleware'])->group(function () {
         Route::put('/{id}', [TransaksiController::class, 'update'])->name('transaksi.update');
         Route::delete('/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
     });
+    // Employee Penjualan Harian
+    Route::prefix('penjualan')->group(function () {
+        Route::get('/', [EmployeePenjualanController::class, 'index'])->name('penjualan.index');
+        Route::get('/create', [EmployeePenjualanController::class, 'create'])->name('penjualan.create');
+        Route::post('/store', [EmployeePenjualanController::class, 'store'])->name('penjualan.store');
+        Route::get('/{id}/edit', [EmployeePenjualanController::class, 'edit'])->name('penjualan.edit');
+        Route::put('/{id}', [EmployeePenjualanController::class, 'update'])->name('penjualan.update');
+        Route::delete('/{id}', [EmployeePenjualanController::class, 'destroy'])->name('penjualan.destroy');
+    });
+    // Employee Pemasukan (BARU - mengikuti pola yang sama)
+    Route::prefix('pemasukan')->group(function () {
+        Route::get('/', [EmployeePemasukanController::class, 'index'])->name('pemasukan.index');
+        Route::get('/detail/{id}', [EmployeePemasukanController::class, 'detail'])->name('pemasukan.detail');
+        Route::get('/export', [EmployeePemasukanController::class, 'export'])->name('pemasukan.export'); // jika diperlukan
+    });
 });
 
 // Admin Route
@@ -150,7 +170,30 @@ Route::middleware(['auth', 'AdminMiddleware'])->group(function () {
         Route::patch('/', [AdminProfileController::class, 'update'])->name('admin.profile.update');
         Route::put('/', [AdminProfileController::class, 'updatePassword'])->name('admin.password.update');
     });
+    // Daftar Produk
+    Route::prefix('/admin/daftar_produk')->group(function () {
+        Route::get('/', [AdminDaftarProdukController::class, 'index'])->name('admin.daftar_produk.index');
+        Route::get('/create', [AdminDaftarProdukController::class, 'create'])->name('admin.daftar_produk.create');
+        Route::post('/store', [AdminDaftarProdukController::class, 'store'])->name('admin.daftar_produk.store');
+        Route::get('/{id}/edit', [AdminDaftarProdukController::class, 'edit'])->name('admin.daftar_produk.edit');
+        Route::put('/{id}', [AdminDaftarProdukController::class, 'update'])->name('admin.daftar_produk.update');
+        Route::delete('/{id}', [AdminDaftarProdukController::class, 'destroy'])->name('admin.daftar_produk.destroy');
+    });
+    // Penjualan Harian
+    Route::prefix('/admin/penjualan_harian')->group(function () {
+        Route::get('/', [AdminPenjualanHarianController::class, 'index'])->name('admin.penjualan_harian.index');
+        Route::get('/create', [AdminPenjualanHarianController::class, 'create'])->name('admin.penjualan_harian.create');
+        Route::post('/store', [AdminPenjualanHarianController::class, 'store'])->name('admin.penjualan_harian.store');
+        Route::get('/{id}/edit', [AdminPenjualanHarianController::class, 'edit'])->name('admin.penjualan_harian.edit');
+        Route::put('/{id}', [AdminPenjualanHarianController::class, 'update'])->name('admin.penjualan_harian.update');
+        Route::delete('/{id}', [AdminPenjualanHarianController::class, 'destroy'])->name('admin.penjualan_harian.destroy');
+    });
+    // Penjualan - Admin melihat semua data penjualan
+    Route::prefix('/admin/pemasukan')->group(function () {
+        Route::get('/', [AdminPemasukanController::class, 'index'])->name('admin.pemasukan.index');
+    });
 });
+
 
 
 require __DIR__ . '/auth.php';

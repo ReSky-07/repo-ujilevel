@@ -12,21 +12,41 @@
                         <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/karyawan.png') }}">
                         Daftar Karyawan
                     </a>
-                    <a class="nav-link {{ Request::is('admin/presensi') ? 'active' : '' }}" href="{{ route('admin.presensi.index') }}">
+                    <a class="nav-link {{ Request::is('admin/daftar_produk') ? 'active' : '' }}" href="{{ route('admin.daftar_produk.index') }}">
+                        <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/karyawan.png') }}">
+                        Daftar Produk
+                    </a>
+                    <a class="nav-link {{ Request::is('admin/penjualan_harian') ? 'active' : '' }}" href="{{ route('admin.penjualan_harian.index') }}">
+                        <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/karyawan.png') }}">
+                        Penjualan Harian
+                    </a>
+                    <a class="nav-link {{ Request::is('admin/pemasukan') ? 'active' : '' }}" href="{{ route('admin.pemasukan.index') }}">
+                        <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/karyawan.png') }}">
+                        Pemasukan
+                    </a>
+                    <!-- <a class="nav-link {{ Request::is('admin/presensi') ? 'active' : '' }}" href="{{ route('admin.presensi.index') }}">
                         <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/absensi.png') }}">
                         Presensi
+                    </a> -->
+                    <!-- <a class="nav-link {{ Request::is('admin/barang') ? 'active' : '' }}" href="{{ route('admin.barang.index') }}">
+                        <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/kelolabarang.png') }}">
+                        Daftar Produk
                     </a>
                     <a class="nav-link {{ Request::is('admin/barang') ? 'active' : '' }}" href="{{ route('admin.barang.index') }}">
                         <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/kelolabarang.png') }}">
-                        Kelola Barang
-                    </a>
-                    <a class="nav-link {{ Request::is('admin/kategori') ? 'active' : '' }}" href="{{ route('admin.kategori.index') }}">
+                        Penjualan Harian
+                    </a> -->
+                    <!-- <a class="nav-link {{ Request::is('admin/kategori') ? 'active' : '' }}" href="{{ route('admin.kategori.index') }}">
                         <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/kategori.png') }}">
                         Kelola Kategori
+                    </a> -->
+                    <a class="nav-link {{ Request::is('admin/transaksi') ? 'active' : '' }}" href="{{ route('admin.transaksi.index') }}">
+                        <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/transaksi.png') }}">
+                        Pemasukan
                     </a>
                     <a class="nav-link {{ Request::is('admin/transaksi') ? 'active' : '' }}" href="{{ route('admin.transaksi.index') }}">
                         <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/transaksi.png') }}">
-                        Kelola Transaksi
+                        Pengeluaran
                     </a>
                     <a class="nav-link {{ Request::is('admin/contacts') ? 'active' : '' }}" href="{{ route('admin.contacts.index') }}">
                         <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/transaksi.png') }}">
