@@ -21,15 +21,15 @@
                     Filter Periode
                 </div>
                 <div class="card-body">
-                    <form method="GET" action="{{ route('pemasukan.index') }}">
+                    <form method="GET" action="{{ route('penjualan.index') }}">
                         <div class="row">
                             <div class="col-md-4">
                                 <label for="start_date">Tanggal Mulai:</label>
-                                <input type="date" name="start_date" class="form-control" value="{{ $startDate ?? date('Y-m-01') }}">
+                                <input type="date" name="start_date" class="form-control" value="{{ $startDate}}">
                             </div>
                             <div class="col-md-4">
                                 <label for="end_date">Tanggal Akhir:</label>
-                                <input type="date" name="end_date" class="form-control" value="{{ $endDate ?? date('Y-m-d') }}">
+                                <input type="date" name="end_date" class="form-control" value="{{ $endDate  }}">
                             </div>
                             <div class="col-md-4">
                                 <label>&nbsp;</label><br>

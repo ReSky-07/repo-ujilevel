@@ -16,6 +16,8 @@ use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminDaftarProdukController;
 use App\Http\Controllers\Admin\AdminPenjualanHarianController;
 use App\Http\Controllers\Admin\AdminPemasukanController;
+use App\Http\Controllers\Admin\AdminTotalPemasukanController;
+use App\Http\Controllers\Admin\AdminPengeluaranController;
 use App\Http\Controllers\EmployeePenjualanController;
 use App\Http\Controllers\EmployeePemasukanController;
 use App\Http\Controllers\Api\ContactController;
@@ -189,8 +191,25 @@ Route::middleware(['auth', 'AdminMiddleware'])->group(function () {
         Route::delete('/{id}', [AdminPenjualanHarianController::class, 'destroy'])->name('admin.penjualan_harian.destroy');
     });
     // Penjualan - Admin melihat semua data penjualan
-    Route::prefix('/admin/pemasukan')->group(function () {
-        Route::get('/', [AdminPemasukanController::class, 'index'])->name('admin.pemasukan.index');
+    Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+        Route::get('/pemasukan', [AdminPemasukanController::class, 'index'])->name('pemasukan.index');
+        Route::get('/pemasukan/{id}/edit', [AdminPemasukanController::class, 'edit'])->name('pemasukan.edit');
+        Route::put('/pemasukan/{id}', [AdminPemasukanController::class, 'update'])->name('pemasukan.update');
+        Route::delete('/pemasukan/{id}', [AdminPemasukanController::class, 'destroy'])->name('pemasukan.destroy');
+    });
+    // pemasukan
+    Route::prefix('admin')->middleware(['auth'])->group(function () {
+        Route::get('/admin_pemasukan', [AdminTotalPemasukanController::class, 'index'])->name('admin.admin_pemasukan.index');
+    });
+    // pengeluaran
+    Route::prefix('admin')->middleware('auth')->group(function () {
+        Route::get('pengeluaran', [App\Http\Controllers\Admin\AdminPengeluaranController::class, 'index'])->name('admin.pengeluaran.index');
+    });
+    Route::prefix('admin')->middleware(['auth'])->group(function () {
+        Route::get('pengeluaran', [AdminPengeluaranController::class, 'index'])->name('admin.pengeluaran.index');
+        Route::post('pengeluaran/store', [AdminPengeluaranController::class, 'store'])->name('admin.pengeluaran.store');
+        Route::put('pengeluaran/{id}', [AdminPengeluaranController::class, 'update'])->name('admin.pengeluaran.update');
+        Route::delete('pengeluaran/{id}', [AdminPengeluaranController::class, 'destroy'])->name('admin.pengeluaran.destroy');
     });
 });
 

@@ -22,7 +22,7 @@
                         Data Produk
                     </div>
                     <div class="d-flex">
-                        <a href="{{ route('admin.daftar_produk.create') }}" class="btn btn-primary btn-sm">Tambah Produk</a>
+                        <a href="{{ route('admin.daftar_produk.create') }}" class="btn btn-primary btn-sm m-0">Tambah Produk</a>
                     </div>
                 </div>
                 <div class="card-body">

@@ -18,11 +18,11 @@
                     </a>
                     <a class="nav-link {{ Request::is('admin/penjualan_harian') ? 'active' : '' }}" href="{{ route('admin.penjualan_harian.index') }}">
                         <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/karyawan.png') }}">
-                        Penjualan Harian
+                        Target Penjualan
                     </a>
                     <a class="nav-link {{ Request::is('admin/pemasukan') ? 'active' : '' }}" href="{{ route('admin.pemasukan.index') }}">
                         <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/karyawan.png') }}">
-                        Pemasukan
+                        Penjualan Harian
                     </a>
                     <!-- <a class="nav-link {{ Request::is('admin/presensi') ? 'active' : '' }}" href="{{ route('admin.presensi.index') }}">
                         <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/absensi.png') }}">
@@ -40,11 +40,11 @@
                         <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/kategori.png') }}">
                         Kelola Kategori
                     </a> -->
-                    <a class="nav-link {{ Request::is('admin/transaksi') ? 'active' : '' }}" href="{{ route('admin.transaksi.index') }}">
+                    <a class="nav-link {{ Request::is('admin/admin_pemasukan') ? 'active' : '' }}" href="{{ route('admin.admin_pemasukan.index') }}">
                         <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/transaksi.png') }}">
                         Pemasukan
                     </a>
-                    <a class="nav-link {{ Request::is('admin/transaksi') ? 'active' : '' }}" href="{{ route('admin.transaksi.index') }}">
+                    <a class="nav-link {{ Request::is('admin/pengeluaran') ? 'active' : '' }}" href="{{ route('admin.pengeluaran.index') }}">
                         <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/transaksi.png') }}">
                         Pengeluaran
                     </a>

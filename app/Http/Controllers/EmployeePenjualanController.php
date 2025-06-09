@@ -12,13 +12,20 @@ use Illuminate\Support\Facades\DB;
 
 class EmployeePenjualanController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $userId = Auth::id();
+        // Ambil filter tanggal dari request, atau default ke hari ini
+        $startDate = $request->input('start_date') ?? now()->startOfMonth()->toDateString();
+        $endDate = $request->input('end_date') ?? now()->toDateString();
+
         $sales = Sale::with('product')
-            ->where('user_id', Auth::id())
+            ->where('user_id', $userId)
+            ->whereBetween('sale_date', [$startDate, $endDate])
             ->latest('sale_date')
             ->get();
-        return view('penjualan.index', compact('sales'));
+
+        return view('penjualan.index', compact('sales', 'startDate', 'endDate'));
     }
 
     public function create()

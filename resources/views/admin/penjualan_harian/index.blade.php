@@ -18,14 +18,28 @@
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <div>
-                        <i class="fas fa-chart-line me-1"></i>
-                        Data Penjualan Harian
+                        <i class="fas fa-chart-line me-1"></i>Data Penjualan Harian
                     </div>
-                    <div class="d-flex">
-                        <a href="{{ route('admin.penjualan_harian.create') }}" class="btn btn-primary btn-sm">Tambah Penjualan</a>
+                    <div>
+                        <a href="{{ route('admin.penjualan_harian.create') }}" class="btn btn-primary btn-sm m-0">Tambah Penjualan</a>
                     </div>
                 </div>
                 <div class="card-body">
+                    <form method="GET" action="{{ route('admin.penjualan_harian.index') }}" class="row g-3 mb-3 align-items-end">
+                        <div class="col-md-3">
+                            <label for="start_date" class="form-label">Dari Tanggal</label>
+                            <input type="date" name="start_date" id="start_date" class="form-control" value="{{ request('start_date') }}">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="end_date" class="form-label">Sampai Tanggal</label>
+                            <input type="date" name="end_date" id="end_date" class="form-control" value="{{ request('end_date') }}">
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <button type="submit" class="btn btn-primary me-2">Filter</button>
+                            <a href="{{ route('admin.penjualan_harian.index') }}" class="btn btn-secondary me-2">Reset</a>
+                        </div>
+                    </form>
+
                     <table id="datatablesSimple" class="table table-striped table-bordered">
                         <thead>
                             <tr>
@@ -54,8 +68,8 @@
                                     <form action="{{ route('admin.penjualan_harian.destroy', $sale->id) }}" method="POST" class="delete-form d-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="button" class="btn btn-danger btn-sm delete-btn" 
-                                            data-id="{{ $sale->id }}" 
+                                        <button type="button" class="btn btn-danger btn-sm delete-btn"
+                                            data-id="{{ $sale->id }}"
                                             data-tanggal="{{ $sale->sale_date->format('d/m/Y') }}"
                                             data-produk="{{ $sale->product->name }}"
                                             data-jumlah="{{ number_format($sale->quantity, 0, ',', '.') }}">Hapus</button>
@@ -69,7 +83,7 @@
             </div>
         </div>
     </main>
-    
+
     <!-- Script untuk SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
@@ -84,7 +98,7 @@
                     const produk = button.getAttribute('data-produk');
                     const jumlah = button.getAttribute('data-jumlah');
                     const form = button.closest('.delete-form');
-                    
+
                     Swal.fire({
                         title: 'Konfirmasi Hapus',
                         html: `Anda yakin ingin menghapus data penjualan <strong>${produk}</strong> tanggal <strong>${tanggal}</strong> dengan jumlah <strong>${jumlah} pcs</strong>?`,
@@ -103,6 +117,6 @@
             });
         });
     </script>
-    
+
     @include('admin.admin_partials.footer')
 </div>

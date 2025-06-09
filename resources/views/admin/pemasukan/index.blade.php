@@ -21,11 +21,22 @@
                         <i class="fas fa-table me-1"></i>
                         Data Penjualan Seluruh Karyawan
                     </div>
-                    <div class="d-flex">
-                        <a href="{{ route('admin.penjualan_harian.create') }}" class="btn btn-primary btn-sm">Tambah Penjualan</a>
-                    </div>
                 </div>
                 <div class="card-body">
+                    <form method="GET" action="{{ route('admin.pemasukan.index') }}" class="row g-3 mb-3 align-items-end">
+                        <div class="col-md-3">
+                            <label for="start_date" class="form-label">Dari Tanggal</label>
+                            <input type="date" name="start_date" id="start_date" class="form-control" value="{{ request('start_date') }}">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="end_date" class="form-label">Sampai Tanggal</label>
+                            <input type="date" name="end_date" id="end_date" class="form-control" value="{{ request('end_date') }}">
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <button type="submit" class="btn btn-primary me-2">Filter</button>
+                            <a href="{{ route('admin.pemasukan.index') }}" class="btn btn-secondary me-2">Reset</a>
+                        </div>
+                    </form>
                     <table id="datatablesSimple" class="table table-striped table-bordered">
                         <thead>
                             <tr>
@@ -52,8 +63,7 @@
                                 <td>{{ $sale->user->name }}</td>
                                 <td>{{ $sale->created_at->format('d/m/Y H:i') }}</td>
                                 <td>
-                                    <a href="{{ route('admin.penjualan_harian.edit', $sale->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('admin.penjualan_harian.destroy', $sale->id) }}" method="POST" class="delete-form d-inline">
+                                    <form action="{{ route('admin.pemasukan.destroy', $sale->id) }}" method="POST" class="delete-form d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="button" class="btn btn-danger btn-sm delete-btn"

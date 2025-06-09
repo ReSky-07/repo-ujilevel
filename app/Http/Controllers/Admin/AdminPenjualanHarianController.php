@@ -9,10 +9,20 @@ use Illuminate\Http\Request;
 
 class AdminPenjualanHarianController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $sales = DailySale::with('product')->latest('sale_date')->get();
-        return view('admin.penjualan_harian.index', compact('sales'));
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        $sales = DailySale::with('product')->latest('sale_date');
+
+        if ($startDate && $endDate) {
+            $sales = $sales->whereBetween('sale_date', [$startDate, $endDate]);
+        }
+
+        $sales = $sales->get();
+
+        return view('admin.penjualan_harian.index', compact('sales', 'startDate', 'endDate'));
     }
 
     public function create()
