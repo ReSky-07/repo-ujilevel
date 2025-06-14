@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Sale;
+use App\Models\Pengeluaran;
 use App\Exports\MonthlyTransactionExport;
 use App\Models\Transaksi;
 use App\Models\User;
@@ -16,8 +18,10 @@ class AdminDashboardController extends Controller
 {
     public function index()
     {
-        $pemasukan = Transaksi::where('jenis_transaksi', 'pemasukan')->sum('jumlah_transaksi');
-        $pengeluaran = Transaksi::where('jenis_transaksi', 'pengeluaran')->sum('jumlah_transaksi');
+        // Total pemasukan
+        $totalPemasukan = Sale::with('product')->get()
+            ->sum(fn($sale) => $sale->product->price * $sale->quantity);
+        $totalPengeluaran = Pengeluaran::sum('jumlah');
         $jumlahKaryawan = User::where('usertype', 'user')->count();
         // Ambil transaksi terbaru dengan data user
         $transaksiTerbaru = Transaksi::with(['kategori', 'user'])
@@ -42,7 +46,7 @@ class AdminDashboardController extends Controller
             ];
         });
 
-        return view('admin.dashboard', compact('pemasukan', 'pengeluaran', 'transaksiTerbaru', 'chartData','jumlahKaryawan'));
+        return view('admin.dashboard', compact('totalPemasukan', 'totalPengeluaran', 'jumlahKaryawan'));
     }
     public function exportExcel()
     {

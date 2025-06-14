@@ -11,9 +11,9 @@
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <a style="text-decoration: none; color: inherit;" class="small stretched-link" href="{{ route('admin.transaksi.index') }}">
+                            <a style="text-decoration: none; color: inherit;" class="small stretched-link" href="{{ route('admin.admin_pemasukan.index') }}">
                                 <h5>Total Pemasukan</h5>
-                                <h2 class="text-black">Rp {{ number_format($pemasukan, 2, ',', '.') }}</h2>
+                                <h2 class="text-black">Rp {{ number_format($totalPemasukan, 2, ',', '.') }}</h2>
                             </a>
                         </div>
                     </div>
@@ -23,8 +23,8 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <a style="text-decoration: none; color: inherit;" class="small stretched-link" href="{{ route('admin.transaksi.index') }}">
-                                <h5 class="text-danger">Pemasukan bulanan</h5>
-                                <h2>Rp {{ number_format($pemasukanBulanan, 2, ',', '.') }}</h2>
+                                <h5>Pemasukan bulanan</h5>
+                                <h2 class="text-black">Rp {{ number_format($pemasukanBulanan, 2, ',', '.') }}</h2>
                             </a>
                         </div>
                     </div>
@@ -33,8 +33,8 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <a style="text-decoration: none; color: inherit;" class="small stretched-link" href="{{ route('admin.daftar_karyawan.index') }}">
-                                <h5 class="text-primary">Pemasukan harian</h5>
-                                <h2>Rp {{ number_format($pemasukanHarian, 2, ',', '.') }}</h2>
+                                <h5>Pemasukan harian</h5>
+                                <h2 class="text-black">Rp {{ number_format($pemasukanHarian, 2, ',', '.') }}</h2>
                             </a>
                         </div>
                     </div>

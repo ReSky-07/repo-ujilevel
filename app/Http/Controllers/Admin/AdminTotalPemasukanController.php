@@ -46,7 +46,7 @@ class AdminTotalPemasukanController extends Controller
         }
 
         return view('admin.admin_pemasukan.index', [
-            'pemasukan' => $totalPemasukan,
+            'totalPemasukan' => $totalPemasukan,
             'pemasukanHarian' => $pemasukanHarian,
             'pemasukanBulanan' => $pemasukanBulanan,
             'chartData' => $chartData,

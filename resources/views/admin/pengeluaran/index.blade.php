@@ -19,26 +19,26 @@
             <!-- Ringkasan -->
             <div class="row mb-4">
                 <div class="col-md-4">
-                    <div class="card text-white bg-danger mb-3">
+                    <div class="card text-white mb-3">
                         <div class="card-body">
-                            <h5 class="card-title">Total Pengeluaran</h5>
-                            <h3>Rp {{ number_format($totalPengeluaran, 0, ',', '.') }}</h3>
+                            <h5 style="color: red">Total Pengeluaran</h5>
+                            <h3 class="text-black">Rp {{ number_format($totalPengeluaran, 0, ',', '.') }}</h3>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card text-white bg-warning mb-3">
+                    <div class="card text-white mb-3">
                         <div class="card-body">
-                            <h5 class="card-title">Pengeluaran Bulanan</h5>
-                            <h3>Rp {{ number_format($pengeluaranBulanan, 0, ',', '.') }}</h3>
+                            <h5 style="color: red">Pengeluaran Bulanan</h5>
+                            <h3 class="text-black">Rp {{ number_format($pengeluaranBulanan, 0, ',', '.') }}</h3>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card text-white bg-primary mb-3">
+                    <div class="card text-white  mb-3">
                         <div class="card-body">
-                            <h5 class="card-title">Pengeluaran Harian</h5>
-                            <h3>Rp {{ number_format($pengeluaranHarian, 0, ',', '.') }}</h3>
+                            <h5 style="color: red">Pengeluaran Harian</h5>
+                            <h3 class="text-black">Rp {{ number_format($pengeluaranHarian, 0, ',', '.') }}</h3>
                         </div>
                     </div>
                 </div>
@@ -79,11 +79,11 @@
                 </div>
             </div>
 
-            <!-- Tabel Data -->
+            <!-- Tabel Data dengan DataTables -->
             <div class="card mb-4">
                 <div class="card-header">Daftar Pengeluaran</div>
-                <div class="card-body table-responsive">
-                    <table class="table table-striped table-bordered">
+                <div class="card-body">
+                    <table id="pengeluaranTable" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -97,9 +97,9 @@
                             @foreach($pengeluarans as $key => $item)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
-                                <td>{{ $item->tanggal->format('d/m/Y') }}</td>
+                                <td data-order="{{ $item->tanggal->format('Y-m-d') }}">{{ $item->tanggal->format('d/m/Y') }}</td>
                                 <td>{{ $item->deskripsi }}</td>
-                                <td>Rp {{ number_format($item->jumlah, 0, ',', '.') }}</td>
+                                <td data-order="{{ $item->jumlah }}">Rp {{ number_format($item->jumlah, 0, ',', '.') }}</td>
                                 <td>
                                     <form action="{{ route('admin.pengeluaran.destroy', $item->id) }}" method="POST" class="d-inline">
                                         @csrf
@@ -153,6 +153,19 @@
         </div>
     </main>
 
+    <!-- jQuery (pastikan dimuat dulu) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- DataTables CSS & JS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css">
+    
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
+
+    <!-- Chart.js Script -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         const chartData = @json($chartData);
@@ -188,32 +201,97 @@
         });
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- DataTables Initialization -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.btn-delete').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const form = this.closest('form');
-
-                    Swal.fire({
-                        title: 'Konfirmasi Hapus',
-                        html: `Yakin ingin menghapus pengeluaran ini?`,
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#d33',
-                        cancelButtonColor: '#3085d6',
-                        confirmButtonText: 'Ya, Hapus!',
-                        cancelButtonText: 'Batal'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            form.submit();
+        $(document).ready(function() {
+            // Pastikan jQuery dan DataTables tersedia
+            if (typeof $ !== 'undefined' && $.fn.DataTable) {
+                var table = $('#pengeluaranTable').DataTable({
+                    responsive: true,
+                    processing: true,
+                    language: {
+                        "sProcessing": "Sedang memproses...",
+                        "sLengthMenu": "Tampilkan _MENU_ entri",
+                        "sZeroRecords": "Tidak ditemukan data yang sesuai",
+                        "sInfo": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+                        "sInfoEmpty": "Menampilkan 0 sampai 0 dari 0 entri",
+                        "sInfoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
+                        "sInfoPostFix": "",
+                        "sSearch": "Cari:",
+                        "sUrl": "",
+                        "oPaginate": {
+                            "sFirst": "Pertama",
+                            "sPrevious": "Sebelumnya",
+                            "sNext": "Selanjutnya",
+                            "sLast": "Terakhir"
                         }
-                    });
+                    },
+                    order: [[1, 'desc']], // Sort by tanggal descending
+                    columnDefs: [
+                        {
+                            targets: [0], // Kolom No
+                            orderable: false,
+                            searchable: false
+                        },
+                        {
+                            targets: [4], // Kolom Aksi
+                            orderable: false,
+                            searchable: false
+                        }
+                    ],
+                    pageLength: 10,
+                    lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
+                    searching: true,
+                    paging: true,
+                    info: true,
+                    lengthChange: true,
+                    drawCallback: function() {
+                        // Re-bind delete button events after table redraw
+                        bindDeleteEvents();
+                    }
                 });
+                
+                console.log('DataTable initialized successfully');
+            } else {
+                console.error('jQuery atau DataTables tidak tersedia');
+            }
+        });
+
+        // Function to bind delete button events
+        function bindDeleteEvents() {
+            document.querySelectorAll('.btn-delete').forEach(button => {
+                button.removeEventListener('click', handleDelete); // Remove existing listeners
+                button.addEventListener('click', handleDelete);
             });
+        }
+
+        // Delete handler function
+        function handleDelete(e) {
+            e.preventDefault();
+            const form = this.closest('form');
+
+            Swal.fire({
+                title: 'Konfirmasi Hapus',
+                html: `Yakin ingin menghapus pengeluaran ini?`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        }
+
+        // Initial binding
+        document.addEventListener('DOMContentLoaded', function() {
+            bindDeleteEvents();
         });
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @include('admin.admin_partials.footer')

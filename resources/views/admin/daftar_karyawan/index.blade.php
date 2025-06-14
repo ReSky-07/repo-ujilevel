@@ -21,18 +21,18 @@
                         Data Karyawan
                     </div>
                     <div>
-                        <a href="{{ route('admin.daftar_karyawan.create') }}" class="btn btn-primary btn-sm">Tambah Karyawan</a>
+                        <a href="{{ route('admin.daftar_karyawan.create') }}" class="btn btn-primary btn-sm m-0">Tambah Karyawan</a>
                     </div>
                 </div>
                 <div class="card-body">
                     <table id="datatablesSimple" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Nama</th>
-                                <th>Email</th>
-                                <th>Gaji</th>
-                                <th>Tanggal Daftar</th>
-                                <th>Aksi</th>
+                                <th class="text-center align-middle">Nama</th>
+                                <th class="text-center align-middle">Email</th>
+                                <th class="text-center align-middle">Gaji</th>
+                                <th class="text-center align-middle">Tanggal Daftar</th>
+                                <th class="text-center align-middle">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>

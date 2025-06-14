@@ -18,7 +18,7 @@
                     </a>
                     <a class="nav-link {{ Request::is('admin/penjualan_harian') ? 'active' : '' }}" href="{{ route('admin.penjualan_harian.index') }}">
                         <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/karyawan.png') }}">
-                        Target Penjualan
+                        Stok Penjualan Harian
                     </a>
                     <a class="nav-link {{ Request::is('admin/pemasukan') ? 'active' : '' }}" href="{{ route('admin.pemasukan.index') }}">
                         <img style="padding-right: 10px;" class="navbar-brand" src="{{ asset('assets/karyawan.png') }}">

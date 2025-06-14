@@ -9,8 +9,8 @@ const Header = () => {
       </div>
       <div className="textHeader">
         <div className="titleHeader">LAILA FRIED CHICKEN</div>
-        <div className="descHeader">Lorem Ipsum is simply dummy text of the</div>
-        <div className="descHeader">printing and typesetting industry.</div>
+        <div className="descHeader">Laila Fried Chicken adalah sebuah</div>
+        <div className="descHeader">printing and typesetting industry</div>
       </div>
     </div>
   );
