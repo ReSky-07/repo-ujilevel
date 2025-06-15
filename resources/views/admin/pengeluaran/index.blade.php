@@ -29,11 +29,33 @@
                 <div class="col-md-4">
                     <div class="card text-white mb-3">
                         <div class="card-body">
-                            <h5 style="color: red">Pengeluaran Bulanan</h5>
-                            <h3 class="text-black">Rp {{ number_format($pengeluaranBulanan, 0, ',', '.') }}</h3>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0" style="color: red;">Pengeluaran Bulanan</h5>
+                                <div class="d-flex gap-2">
+                                    <select id="bulanSelect" class="form-select form-select-sm w-auto">
+                                        @foreach($listBulan as $key => $namaBulan)
+                                        <option value="{{ $key }}" {{ $selectedBulan == $key ? 'selected' : '' }}>
+                                            {{ $namaBulan }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                    <select id="tahunSelect" class="form-select form-select-sm w-auto">
+                                        @foreach($listTahun as $tahun)
+                                        <option value="{{ $tahun }}" {{ $selectedTahun == $tahun ? 'selected' : '' }}>
+                                            {{ $tahun }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <h3 class="text-black mt-3" id="pengeluaranBulananText">
+                                Rp {{ number_format($pengeluaranBulanan, 0, ',', '.') }}
+                            </h3>
                         </div>
                     </div>
                 </div>
+
+
                 <div class="col-md-4">
                     <div class="card text-white  mb-3">
                         <div class="card-body">
@@ -47,8 +69,8 @@
             <!-- Grafik -->
             <div class="card mb-4">
                 <div class="card-header">Grafik Pengeluaran (7 Hari Terakhir)</div>
-                <div class="card-body">
-                    <canvas id="pengeluaranChart" height="100"></canvas>
+                <div class="card-body" style="position: relative; height: 400px;">
+                    <canvas id="pengeluaranChart" style="width: 100%; height: 100%;"></canvas>
                 </div>
             </div>
 
@@ -155,11 +177,11 @@
 
     <!-- jQuery (pastikan dimuat dulu) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
     <!-- DataTables CSS & JS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css">
-    
+
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
@@ -226,9 +248,10 @@
                             "sLast": "Terakhir"
                         }
                     },
-                    order: [[1, 'desc']], // Sort by tanggal descending
-                    columnDefs: [
-                        {
+                    order: [
+                        [1, 'desc']
+                    ], // Sort by tanggal descending
+                    columnDefs: [{
                             targets: [0], // Kolom No
                             orderable: false,
                             searchable: false
@@ -240,7 +263,10 @@
                         }
                     ],
                     pageLength: 10,
-                    lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
+                    lengthMenu: [
+                        [10, 25, 50, 100, -1],
+                        [10, 25, 50, 100, "Semua"]
+                    ],
                     searching: true,
                     paging: true,
                     info: true,
@@ -250,7 +276,7 @@
                         bindDeleteEvents();
                     }
                 });
-                
+
                 console.log('DataTable initialized successfully');
             } else {
                 console.error('jQuery atau DataTables tidak tersedia');
@@ -293,5 +319,27 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const bulanSelect = document.getElementById('bulanSelect');
+            const tahunSelect = document.getElementById('tahunSelect');
+
+            if (bulanSelect && tahunSelect) {
+                function updateURL() {
+                    const bulan = bulanSelect.value;
+                    const tahun = tahunSelect.value;
+                    const url = new URL(window.location.href);
+                    url.searchParams.set('bulan', bulan);
+                    url.searchParams.set('tahun', tahun);
+                    window.location.href = url.toString();
+                }
+
+                bulanSelect.addEventListener('change', updateURL);
+                tahunSelect.addEventListener('change', updateURL);
+            }
+        });
+    </script>
+
 
     @include('admin.admin_partials.footer')

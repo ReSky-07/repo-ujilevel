@@ -9,8 +9,7 @@ const Header = () => {
       </div>
       <div className="textHeader">
         <div className="titleHeader">LAILA FRIED CHICKEN</div>
-        <div className="descHeader">Laila Fried Chicken adalah sebuah</div>
-        <div className="descHeader">printing and typesetting industry</div>
+        <div className="descHeader">Cita Rasa Tak Tertandingi</div>
       </div>
     </div>
   );

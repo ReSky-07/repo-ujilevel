@@ -199,8 +199,13 @@ Route::middleware(['auth', 'AdminMiddleware'])->group(function () {
     });
     // pemasukan
     Route::prefix('admin')->middleware(['auth'])->group(function () {
+        // Halaman utama pemasukan
         Route::get('/admin_pemasukan', [AdminTotalPemasukanController::class, 'index'])->name('admin.admin_pemasukan.index');
+
+        //Tambahan: Route AJAX untuk pemasukan bulanan
+        Route::get('/pemasukan/bulanan', [AdminTotalPemasukanController::class, 'getPemasukanBulanan'])->name('admin.pemasukan.bulanan');
     });
+
     // pengeluaran
     Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('pengeluaran', [App\Http\Controllers\Admin\AdminPengeluaranController::class, 'index'])->name('admin.pengeluaran.index');

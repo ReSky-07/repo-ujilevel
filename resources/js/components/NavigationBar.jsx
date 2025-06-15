@@ -120,9 +120,7 @@ const NavigationBar = () => {
                             </Nav.Link>
                         ) : (
                             <>
-                                <Nav.Link href={authStatus.loginUrl} className="auth-link login">
-                                    Login
-                                </Nav.Link>
+                               
                             </>
                         )}
                     </div>

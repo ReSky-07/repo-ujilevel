@@ -28,7 +28,7 @@
             <!-- Bagian Kiri (Logo) -->
             <div class="col-md-6 d-flex flex-column justify-content-center align-items-center bg-white">
                 <div class="text-center">
-                    <img src="{{ asset('assets/logo-bispin.png') }}" alt="Logo" class="logo-image mb-4" />
+                    <img src="{{ asset('assets/logo-mapan.png') }}" alt="Logo" class="logo-image mb-4" style="width: 80%;"/>
                 </div>
             </div>
 
@@ -37,8 +37,8 @@
                 <div class="login-section" style="width: 100%;">
 
                     <div class="text-center mb-4">
-                        <h2 class="fw-bold text-white">Welcome To BisPin</h2>
-                        <p style="font-size: 25px;"><span style="color: #E74127;">Bisnis</span> <span style="color: #342F35;">Pintar</span></p>
+                        <h2 class="fw-bold text-white">Welcome To Mapan</h2>
+                        <p style="font-size: 25px;"><span style="color: #E74127;">Manajemen Pegawai &</span> <span style="color: #342F35;">Niaga</span></p>
                     </div>
 
                     <form method="POST" action="{{ route('login') }}">
